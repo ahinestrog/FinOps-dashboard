@@ -1,0 +1,91 @@
+/**
+ * Design tokens — LedgerOps sobre el design system Nocturne.
+ *
+ * Los fondos son neutros puros (negro/blanco), sin tinte: el color vive solo en
+ * el acento y en la semántica. Los tokens del design system (`--color-*`) se
+ * remapean a los `--s-*` para que los componentes de la librería (.btn, .tag,
+ * .table, .seg, .input) cambien de tema con el resto de la UI.
+ */
+
+:root,
+[data-t="dark"] {
+  --s-bg: #0b0b0c;
+  --s-card: #141416;
+  --s-side: #0f0f11;
+  --s-surf2: #1c1b22;
+  --s-t: #f2f2f3;
+  --s-t1: rgba(242, 242, 243, 0.8);
+  --s-t2: rgba(242, 242, 243, 0.56);
+  --s-t3: rgba(242, 242, 243, 0.42);
+  --s-line: rgba(242, 242, 243, 0.09);
+  --s-fill: rgba(242, 242, 243, 0.14);
+  --s-ring: #3a3a3e;
+  --s-acc: #9184d9;
+  --s-acc2: #7a6dc4;
+  --s-acc3: #5f54a3;
+  --s-acc-soft: #b5abfc;
+  --s-acc-strong: #d2cefd;
+  --s-acc-fill: #332c54;
+  --s-acc-t: rgba(145, 132, 217, 0.13);
+  --s-acc-b: rgba(145, 132, 217, 0.42);
+  --s-ok: #84d9b3;
+  --s-warn: #d9b47f;
+  --s-bad: #d98a8a;
+  --s-ok-t: rgba(132, 217, 179, 0.15);
+  --s-warn-t: rgba(217, 180, 127, 0.16);
+  --s-bad-t: rgba(217, 138, 138, 0.16);
+  --s-scroll: #33333a;
+
+  --color-bg: var(--s-bg);
+  --color-surface: var(--s-card);
+  --color-text: var(--s-t);
+  --color-accent: var(--s-acc);
+  --color-accent-2: var(--s-acc);
+  --color-divider: var(--s-fill);
+  --color-accent-800: #332c54;
+  --color-accent-100: #f5f4ff;
+  --color-accent-2-800: #423e5d;
+  --color-accent-2-100: #f5f4ff;
+  --color-neutral-800: #2a2a2e;
+  --color-neutral-100: #f4f4f5;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+}
+
+[data-t="light"] {
+  --s-bg: #ffffff;
+  --s-card: #ffffff;
+  --s-side: #fafafa;
+  --s-surf2: #f4f4f5;
+  --s-t: #161617;
+  --s-t1: rgba(22, 22, 23, 0.82);
+  --s-t2: rgba(22, 22, 23, 0.58);
+  --s-t3: rgba(22, 22, 23, 0.44);
+  --s-line: rgba(22, 22, 23, 0.13);
+  --s-fill: rgba(22, 22, 23, 0.08);
+  --s-ring: rgba(22, 22, 23, 0.2);
+  --s-acc: #6455c0;
+  --s-acc2: #7d6fce;
+  --s-acc3: #9a90dd;
+  --s-acc-soft: #54479f;
+  --s-acc-strong: #3f3480;
+  --s-acc-fill: #ddd7f7;
+  --s-acc-t: rgba(100, 85, 192, 0.09);
+  --s-acc-b: rgba(100, 85, 192, 0.34);
+  --s-ok: #1f8a5f;
+  --s-warn: #96631a;
+  --s-bad: #b04141;
+  --s-ok-t: rgba(31, 138, 95, 0.12);
+  --s-warn-t: rgba(150, 99, 26, 0.13);
+  --s-bad-t: rgba(176, 65, 65, 0.12);
+  --s-scroll: #cccccf;
+
+  --color-accent-800: #ddd7f7;
+  --color-accent-100: #2f2660;
+  --color-accent-2-800: #dcd9f0;
+  --color-accent-2-100: #2e2b52;
+  --color-neutral-800: #e6e6e8;
+  --color-neutral-100: #2a2a2e;
+}

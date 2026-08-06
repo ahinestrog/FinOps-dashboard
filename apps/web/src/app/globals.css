@@ -1,0 +1,42 @@
+/* Los @import van primero (lo exige el estándar y lo aplica Turbopack).
+   Las utilidades de Tailwind se cargan después de las clases del design system,
+   así una utilidad puntual siempre puede ajustar un .btn o una .table. */
+@import "@finops/ui/styles/tokens.css";
+@import "@finops/ui/styles/components.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--s-bg);
+  color: var(--s-t);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+a {
+  color: var(--s-acc);
+}
+a:hover {
+  color: var(--s-acc-soft);
+}

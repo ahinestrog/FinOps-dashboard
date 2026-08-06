@@ -1,0 +1,5 @@
+{
+  "extends": "@finops/config/tsconfig/base",
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

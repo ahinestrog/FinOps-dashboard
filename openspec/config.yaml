@@ -1,0 +1,63 @@
+schema: spec-driven
+
+context: |
+  LedgerOps — consola FinOps multi-cuenta para AWS.
+
+  Producto
+  - Equipo de finanzas cloud que gestiona una organización AWS de ~14 cuentas y
+    ~$500k/mes. Reúne Cost Explorer, CloudTrail, Trusted Advisor, Budgets,
+    Compute Optimizer y CloudWatch en una sola interfaz, y añade "Top recursos":
+    top consumidores con umbrales de utilización e histórico de 90 días para
+    decidir si un recurso se baja, se sube o se mantiene.
+  - Siete pantallas: Dashboard, Cost Explorer, CloudTrail, Trusted Advisor,
+    Optimización, Top recursos, Alertas. Más el drawer del FinOps Agent de AWS,
+    reservado y deliberadamente inerte hasta que AWS libere la API.
+  - Idioma de la interfaz: español, con términos técnicos en inglés (eventName,
+    Savings Plans, rightsizing, budget…). Densidad equilibrada.
+
+  Stack
+  - Monorepo Turborepo + Bun. Biome para formato y lint. TypeScript en todo.
+  - apps/web: Next.js 15 (App Router, React 19), Tailwind v3, shadcn/ui + Tremor,
+    nuqs para el estado de pantalla en la URL, Zod para validar cada fuente.
+  - packages/ui: componentes compartidos y tokens del design system.
+    packages/types: modelo de dominio (Zod) y puertos de las fuentes AWS.
+    packages/config: tsconfig, biome y preset de Tailwind compartidos.
+  - Sin base de datos, sin CI/CD y sin servicio NestJS en esta fase. Los nombres
+    del dominio ya anticipan el esquema de Prisma (CostRecord, Anomaly,
+    Resource, TrailEvent, AdvisorCheck, Recommendation, Budget…).
+
+  Arquitectura de datos
+  - Puertos/adaptadores: `packages/types/src/ports` define CostExplorerClient,
+    CloudTrailClient, TrustedAdvisorClient, ComputeOptimizerClient,
+    BudgetsClient, ResourceInventoryClient y CloudWatchClient.
+    `apps/web/src/server/aws` tiene las implementaciones `Mock*Client` sobre
+    fixtures, validadas con Zod, y el contenedor `dataSources`.
+  - Conectar AWS de verdad = cambiar la implementación en ese contenedor.
+    Ninguna pantalla ni componente debe importar fixtures directamente.
+
+  Reglas de negocio que no se negocian
+  - Umbrales de utilización (servicios de cómputo): ≥60 Revisión, 20–60 Óptimo,
+    <20 Infrautilizado. En servicios sin métrica de capacidad (S3, Lambda, EBS)
+    el estado sale del ahorro posible, no de los umbrales.
+  - La serie de 90 días se genera desde el baseline fijo de 14 d del recurso.
+    Cambiar la ventana de evaluación cambia el badge y el veredicto, nunca la
+    curva ni sus estadísticas.
+  - El veredicto ramifica por la utilización de la ventana activa, no por la
+    media de 90 d, y nunca propone subir de tamaño si la fila tiene ahorro.
+
+  Convenciones
+  - Conventional commits.
+  - Comentarios y copy de producto en español.
+  - Todo el color pasa por los tokens `--s-*`; nada de colores literales en
+    componentes.
+
+rules:
+  proposal:
+    - Indicar siempre qué puerto de datos AWS toca el cambio, si toca alguno
+    - Incluir una sección "Non-goals"
+  design:
+    - Citar el fichero de referencia del handoff cuando el cambio sea visual
+    - Justificar cualquier desviación de los design tokens
+  tasks:
+    - Trocear en tareas de máximo 2 horas
+    - Cada tarea que toque UI dice en qué pantalla se verifica

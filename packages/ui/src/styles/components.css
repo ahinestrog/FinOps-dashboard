@@ -1,0 +1,257 @@
+/**
+ * Clases del design system Nocturne, remapeadas a los tokens `--s-*`.
+ * Son la fuente de verdad de la forma de .btn/.tag/.table/.seg/.input/.hr;
+ * el layout y el espaciado se hacen con Tailwind en cada componente.
+ */
+
+/* — reglas — */
+.hr {
+  height: 1px;
+  border: 0;
+  margin: 11.2px 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--s-line) 48px,
+    var(--s-line) calc(100% - 48px),
+    transparent
+  );
+}
+
+/* — botones — */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--s-t);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 5.6px 10px;
+  border-radius: var(--radius-md);
+}
+.btn svg {
+  display: block;
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  color: var(--s-acc);
+  border-color: var(--s-acc);
+}
+.btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--s-acc) 12%, transparent);
+}
+.btn-primary:active:not(:disabled) {
+  background: color-mix(in srgb, var(--s-acc) 22%, transparent);
+}
+.btn-secondary {
+  border-color: var(--s-fill);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--s-t) 7%, transparent);
+}
+.btn-secondary:active:not(:disabled) {
+  background: color-mix(in srgb, var(--s-t) 14%, transparent);
+}
+.btn-ghost {
+  color: var(--s-acc);
+  padding-inline: 2.8px;
+}
+.btn-ghost:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--s-acc) 10%, transparent);
+}
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+.btn-block {
+  width: 100%;
+}
+
+/* — formularios — */
+.input {
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--s-t);
+  caret-color: var(--s-acc);
+  background: var(--s-card);
+  border: 1px solid var(--s-line);
+  border-radius: var(--radius-md);
+}
+.input::placeholder {
+  color: var(--s-t3);
+}
+.input:hover {
+  border-color: color-mix(in srgb, var(--s-t) 45%, transparent);
+}
+.input:focus-visible {
+  border-color: var(--s-acc);
+  outline-offset: 0;
+}
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--s-line);
+  border-radius: var(--radius-md);
+}
+.seg-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--s-t1);
+}
+.seg-opt + .seg-opt {
+  border-left: 1px solid var(--s-line);
+}
+.seg-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.seg-opt:has(input:checked) {
+  color: var(--s-acc);
+  box-shadow: inset 0 0 0 1px var(--s-acc);
+}
+.seg-opt:not(:has(input:checked)):hover {
+  background: color-mix(in srgb, var(--s-t) 7%, transparent);
+}
+.seg-opt:has(input:focus-visible) {
+  outline: 2px solid var(--s-acc);
+  outline-offset: -2px;
+}
+
+/* — tags — */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.tag-accent {
+  background: var(--color-accent-800);
+  color: var(--color-accent-100);
+}
+.tag-neutral {
+  background: var(--color-neutral-800);
+  color: var(--color-neutral-100);
+}
+.tag-outline {
+  border: 1px solid var(--s-acc);
+  color: var(--s-acc);
+}
+
+/* — tablas — */
+/* Las reglas de fila son franjas a nivel de <tr>, para que el degradado de los
+   extremos abarque la fila entera y no cada celda. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.table th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--s-t2);
+  padding: 5.6px;
+  white-space: nowrap;
+}
+.table td {
+  padding: 5.6px;
+  vertical-align: middle;
+}
+.table thead th {
+  position: sticky;
+  top: -1px;
+  background: var(--s-card);
+  z-index: 2;
+}
+.table thead tr {
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      var(--s-line) 48px,
+      var(--s-line) calc(100% - 48px),
+      transparent
+    )
+    no-repeat bottom / 100% 1px;
+}
+.table tbody tr {
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      var(--s-line) 48px,
+      var(--s-line) calc(100% - 48px),
+      transparent
+    )
+    no-repeat bottom / 100% 1px;
+}
+.table tbody tr:hover {
+  background:
+    linear-gradient(var(--s-acc-t), var(--s-acc-t)) no-repeat 0 0 / 100% 100%,
+    linear-gradient(
+      to right,
+      transparent,
+      var(--s-line) 48px,
+      var(--s-line) calc(100% - 48px),
+      transparent
+    )
+    no-repeat bottom / 100% 1px;
+}
+.row-go {
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.table tbody tr:hover .row-go {
+  opacity: 1;
+}
+
+/* — foco y scrollbars — */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--s-acc);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+::selection {
+  background: color-mix(in srgb, var(--s-acc) 30%, transparent);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--s-scroll);
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

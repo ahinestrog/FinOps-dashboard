@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-578275e3-77a6-4947-a6cf-b89bd6602113/styles.css">
+<script src="_ds/nocturne-578275e3-77a6-4947-a6cf-b89bd6602113/_ds_bundle.js"></script>
+<style>
+  html, body { height: 100%; }
+  a { color: var(--color-accent); }
+  a:hover { color: var(--color-accent-400); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: #3f424d; border-radius: 8px; border: 3px solid #161826; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  @keyframes pulseDot { 0%,100% { opacity: 1 } 50% { opacity: .25 } }
+</style>
+</helmet>
+<div style="--ok:#84d9b3;--warn:#d9b47f;--bad:#d98a8a;display:flex;height:100vh;min-height:640px;background:#161826;color:#e9e9ed;font-family:Inter,system-ui,sans-serif;font-size:15px;overflow:hidden">
+
+  <aside style="width:236px;flex:none;display:flex;flex-direction:column;background:#1a1c2b;box-shadow:1px 0 0 rgba(233,233,237,0.08)">
+    <div style="display:flex;align-items:center;gap:10px;padding:18px 16px 14px">
+      <div style="width:30px;height:30px;flex:none;border-radius:8px;display:grid;place-items:center;border:1px solid #9184d9;color:#9184d9">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 19V9M9.5 19V5M15 19v-7M20.5 19v-4"></path></svg>
+      </div>
+      <div>
+        <div style="font-weight:500;font-size:15px;letter-spacing:-0.01em">Ledger<span style="color:#9184d9">Ops</span></div>
+        <div style="font-size:10px;letter-spacing:0.09em;text-transform:uppercase;color:rgba(233,233,237,0.45)">FinOps · AWS</div>
+      </div>
+    </div>
+
+    <div style="padding:6px 16px 8px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(233,233,237,0.38)">Análisis</div>
+    <nav style="display:flex;flex-direction:column;gap:1px;padding-right:10px">
+      <button onClick="{{ goDashboard }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid {{ nav.dashboard.bar }};background:{{ nav.dashboard.bg }};color:{{ nav.dashboard.fg }};border-radius:0 8px 8px 0" style-hover="background:rgba(233,233,237,0.055)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect></svg>
+        Dashboard
+      </button>
+      <button onClick="{{ goCost }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid {{ nav.cost.bar }};background:{{ nav.cost.bg }};color:{{ nav.cost.fg }};border-radius:0 8px 8px 0" style-hover="background:rgba(233,233,237,0.055)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 20V4M4 20h16"></path><path d="M8 16v-4M12.5 16V8M17 16v-6"></path></svg>
+        Cost Explorer
+      </button>
+      <button onClick="{{ goTrail }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid {{ nav.trail.bar }};background:{{ nav.trail.bg }};color:{{ nav.trail.fg }};border-radius:0 8px 8px 0" style-hover="background:rgba(233,233,237,0.055)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12"></path><circle cx="4" cy="6" r="1.3"></circle><circle cx="4" cy="12" r="1.3"></circle><circle cx="4" cy="18" r="1.3"></circle></svg>
+        CloudTrail
+      </button>
+      <button onClick="{{ goAdvisor }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid {{ nav.advisor.bar }};background:{{ nav.advisor.bg }};color:{{ nav.advisor.fg }};border-radius:0 8px 8px 0" style-hover="background:rgba(233,233,237,0.055)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.7-7 9-4.1-1.3-7-4.8-7-9V6l7-3z"></path><path d="M9 12l2.2 2.2L15.5 10"></path></svg>
+        Trusted Advisor
+      </button>
+      <button onClick="{{ goOptimize }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid {{ nav.optimize.bar }};background:{{ nav.optimize.bg }};color:{{ nav.optimize.fg }};border-radius:0 8px 8px 0" style-hover="background:rgba(233,233,237,0.055)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M13 3L5 13.5h5L10.5 21 19 10.5h-5.2L13 3z"></path></svg>
+        Optimización
+      </button>
+      <button onClick="{{ goResources }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid {{ nav.resources.bar }};background:{{ nav.resources.bg }};color:{{ nav.resources.fg }};border-radius:0 8px 8px 0" style-hover="background:rgba(233,233,237,0.055)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="6" rx="1.5"></rect><rect x="3.5" y="13.5" width="17" height="6" rx="1.5"></rect><path d="M7 7.5h.01M7 16.5h.01"></path></svg>
+        Top recursos
+      </button>
+      <button onClick="{{ goAlerts }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid {{ nav.alerts.bar }};background:{{ nav.alerts.bg }};color:{{ nav.alerts.fg }};border-radius:0 8px 8px 0" style-hover="background:rgba(233,233,237,0.055)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1112 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9z"></path><path d="M10 18.5a2.2 2.2 0 004 0"></path></svg>
+        <span style="flex:1">Alertas</span>
+        <span class="tag" style="background:rgba(217,138,138,0.16);color:#d98a8a;padding:1px 7px;font-size:10px">3</span>
+      </button>
+    </nav>
+
+    <div style="padding:18px 16px 8px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(233,233,237,0.38)">Asistente</div>
+    <div style="padding-right:10px">
+      <button onClick="{{ openAgent }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;cursor:pointer;padding:9px 14px;border:0;border-left:2px solid transparent;background:transparent;color:rgba(233,233,237,0.72);border-radius:0 8px 8px 0" style-hover="background:rgba(145,132,217,0.10)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.5l1.7 4.3 4.3 1.7-4.3 1.7L12 15.5l-1.7-4.3L6 9.5l4.3-1.7L12 3.5z"></path><path d="M18 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z"></path></svg>
+        <span style="flex:1">FinOps Agent</span>
+        <span style="font-size:9px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid rgba(145,132,217,0.55);color:#b5abfc;border-radius:5px;padding:1px 5px">Preview</span>
+      </button>
+    </div>
+
+    <div style="margin-top:auto;padding:14px 16px 16px">
+      <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:11px 12px">
+        <div style="font-size:10px;letter-spacing:0.09em;text-transform:uppercase;color:rgba(233,233,237,0.42);margin-bottom:6px">Organización</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <div>
+            <div style="font-size:13px">Acme Corp · o-9f3k</div>
+            <div style="font-size:11px;color:rgba(233,233,237,0.5)">14 cuentas · 6 regiones</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(233,233,237,0.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10l4 4 4-4"></path></svg>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main style="flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden">
+    <header style="flex:none;display:flex;align-items:center;gap:16px;padding:18px 26px 14px;box-shadow:0 1px 0 rgba(233,233,237,0.07)">
+      <div style="min-width:0">
+        <h3 style="margin:0 0 2px;font-size:23px">{{ pageTitle }}</h3>
+        <div style="font-size:12.5px;color:rgba(233,233,237,0.55)">{{ pageSub }}</div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:8px;background:#232532;border-radius:8px;padding:7px 11px;box-shadow:0 0 0 1px rgba(233,233,237,0.08);width:230px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(233,233,237,0.45)" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></svg>
+        <input class="input" placeholder="Buscar recurso, cuenta, evento…" style="background:transparent;border:0;padding:0;min-height:0;font-size:13px;box-shadow:none"></input>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;background:#232532;border-radius:8px;padding:7px 11px;box-shadow:0 0 0 1px rgba(233,233,237,0.08);font-size:13px;cursor:pointer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9184d9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 10h17M8 3.5v3M16 3.5v3"></path></svg>
+        1 – 31 Ago 2026
+      </div>
+      <button class="btn btn-icon btn-secondary" style="position:relative;flex:none">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1112 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9z"></path><path d="M10 18.5a2.2 2.2 0 004 0"></path></svg>
+        <span style="position:absolute;top:7px;right:8px;width:6px;height:6px;border-radius:50%;background:#d98a8a"></span>
+      </button>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:500;background:#423a6a;color:#d2cefd">MC</div>
+        <div style="line-height:1.25">
+          <div style="font-size:13px">Marta Cordero</div>
+          <div style="font-size:11px;color:rgba(233,233,237,0.45)">FinOps Lead</div>
+        </div>
+      </div>
+    </header>
+
+    <div style="flex:1;overflow:auto;padding:20px 26px 40px">
+
+      <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+        <section data-screen-label="Dashboard CUDOS" style="display:flex;flex-direction:column;gap:12px">
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);display:flex;flex-wrap:wrap">
+            <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="7">
+              <div style="flex:1;min-width:150px;padding:13px 16px;box-shadow:inset 1px 0 0 rgba(233,233,237,0.07)">
+                <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(233,233,237,0.45)">{{ k.label }}</div>
+                <div style="font-size:21px;font-weight:500;letter-spacing:-0.01em;margin:5px 0 3px;color:{{ k.color }};font-variant-numeric:tabular-nums">{{ k.value }}</div>
+                <div style="font-size:11px;color:rgba(233,233,237,0.5)">{{ k.sub }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px">
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:15px 18px 10px">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px">
+                <div>
+                  <div style="font-size:15.5px;font-weight:500">Coste amortizado por tipo de cargo</div>
+                  <div style="font-size:11.5px;color:rgba(233,233,237,0.5)">12 meses · payer + 14 cuentas vinculadas</div>
+                </div>
+                <div style="display:flex;gap:12px;font-size:11px;color:rgba(233,233,237,0.62);flex-wrap:wrap">
+                  <sc-for list="{{ chargeLegend }}" as="l" hint-placeholder-count="5">
+                    <span style="display:flex;align-items:center;gap:5px"><span style="width:9px;height:9px;border-radius:2px;background:{{ l.fill }};display:block"></span>{{ l.name }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <svg viewBox="0 0 920 210" width="100%" height="210">
+                <sc-for list="{{ chargeGrid }}" as="g" hint-placeholder-count="4">
+                  <line x1="0" x2="920" y1="{{ g.y }}" y2="{{ g.y }}" stroke="rgba(233,233,237,0.07)"></line>
+                </sc-for>
+                <sc-for list="{{ chargeRects }}" as="r" hint-placeholder-count="30">
+                  <rect x="{{ r.x }}" y="{{ r.y }}" width="{{ r.w }}" height="{{ r.h }}" fill="{{ r.fill }}"></rect>
+                </sc-for>
+                <path d="{{ trendLine210 }}" fill="none" stroke="rgba(233,233,237,0.55)" stroke-width="1.4" stroke-dasharray="4 3"></path>
+              </svg>
+              <div style="display:flex;justify-content:space-between;padding:4px 0 6px;font-size:11px;color:rgba(233,233,237,0.45)">
+                <sc-for list="{{ months }}" as="m" hint-placeholder-count="12">
+                  <span>{{ m }}</span>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:15px 18px">
+              <div style="font-size:15.5px;font-weight:500">Mayores movimientos MoM</div>
+              <div style="font-size:11.5px;color:rgba(233,233,237,0.5);margin-bottom:12px">Variación absoluta agosto vs. julio</div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ movers }}" as="m" hint-placeholder-count="7">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="flex:1;font-size:12.5px;color:rgba(233,233,237,0.82);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.name }}</span>
+                    <span style="width:96px;height:8px;display:flex;justify-content:center">
+                      <span style="width:50%;height:100%;display:flex;justify-content:flex-end;box-shadow:1px 0 0 rgba(233,233,237,0.14)"><span style="width:{{ m.negWidth }};height:100%;background:var(--ok);border-radius:2px 0 0 2px"></span></span>
+                      <span style="width:50%;height:100%"><span style="display:block;width:{{ m.posWidth }};height:100%;background:var(--warn);border-radius:0 2px 2px 0"></span></span>
+                    </span>
+                    <span style="width:74px;text-align:right;font-size:12px;font-variant-numeric:tabular-nums;color:{{ m.color }}">{{ m.delta }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+            <sc-for list="{{ covTiles }}" as="c" hint-placeholder-count="4">
+              <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:13px 15px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+                  <span style="font-size:12px;color:rgba(233,233,237,0.6)">{{ c.name }}</span>
+                  <span style="font-size:17px;font-weight:500;color:{{ c.color }};font-variant-numeric:tabular-nums">{{ c.pct }}</span>
+                </div>
+                <div style="height:5px;border-radius:3px;background:rgba(233,233,237,0.09);overflow:hidden;margin:8px 0 6px"><div style="width:{{ c.pct }};height:100%;background:{{ c.color }};border-radius:3px"></div></div>
+                <div style="font-size:11px;color:rgba(233,233,237,0.45)">{{ c.note }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:14px 6px 6px">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 12px 10px">
+              <div>
+                <div style="font-size:15.5px;font-weight:500">Top consumidores · {{ pillarTitle }}</div>
+                <div style="font-size:11.5px;color:rgba(233,233,237,0.5)">Umbrales de utilización: &lt;20% infrautilizado · &gt;60% revisión</div>
+              </div>
+              <div style="flex:1"></div>
+              <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="6">
+                <button onClick="{{ p.select }}" class="btn" style="font-size:12px;border:1px solid {{ p.border }};background:{{ p.bg }};color:{{ p.fg }}">{{ p.name }}</button>
+              </sc-for>
+              <button onClick="{{ goResources }}" class="btn btn-ghost" style="font-size:12px">Ver todo →</button>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Recurso</th>
+                  <th>Tipo</th>
+                  <th>Cuenta · región</th>
+                  <th>Utilización · 14 d</th>
+                  <th style="text-align:right">Coste/mes</th>
+                  <th style="text-align:right">Δ</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ dashTop }}" as="r" hint-placeholder-count="6">
+                  <tr onClick="{{ r.open }}" style="cursor:pointer">
+                    <td style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px">{{ r.id }}</td>
+                    <td><span class="tag tag-outline" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px">{{ r.type }}</span></td>
+                    <td style="font-size:12.5px;color:rgba(233,233,237,0.68)">{{ r.place }}</td>
+                    <td style="width:160px">
+                      <div style="display:flex;align-items:center;gap:9px">
+                        <div style="flex:1;height:4px;border-radius:3px;background:rgba(233,233,237,0.09);overflow:hidden"><div style="width:{{ r.metricWidth }};height:100%;background:{{ r.metricColor }}"></div></div>
+                        <span style="font-size:11.5px;color:rgba(233,233,237,0.62);width:44px;text-align:right;font-variant-numeric:tabular-nums">{{ r.metric }}</span>
+                      </div>
+                    </td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums">{{ r.cost }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums;color:{{ r.deltaColor }}">{{ r.delta }}</td>
+                    <td><span class="tag" style="background:{{ r.stateBg }};color:{{ r.stateFg }}">{{ r.state }}</span></td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:12px">
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:15px 18px">
+              <div style="font-size:15.5px;font-weight:500;margin-bottom:2px">Asignación por tag</div>
+              <div style="font-size:11.5px;color:rgba(233,233,237,0.5);margin-bottom:12px">Cobertura de la tag policy · CUR</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ tagRows }}" as="t" hint-placeholder-count="4">
+                  <div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;font-size:12.5px;margin-bottom:5px">
+                      <span>{{ t.name }}</span>
+                      <span style="color:rgba(233,233,237,0.6);font-variant-numeric:tabular-nums">{{ t.pct }} · {{ t.amount }}</span>
+                    </div>
+                    <div style="height:5px;border-radius:3px;background:rgba(233,233,237,0.09);overflow:hidden"><div style="width:{{ t.pct }};height:100%;background:{{ t.color }};border-radius:3px"></div></div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:15px 18px">
+              <div style="font-size:15.5px;font-weight:500;margin-bottom:2px">Unit economics</div>
+              <div style="font-size:11.5px;color:rgba(233,233,237,0.5);margin-bottom:12px">Coste por unidad de negocio · agosto</div>
+              <div style="display:flex;flex-direction:column;gap:11px">
+                <sc-for list="{{ unitRows }}" as="u" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+                    <div style="min-width:0">
+                      <div style="font-size:12.5px">{{ u.name }}</div>
+                      <div style="font-size:11px;color:rgba(233,233,237,0.45)">{{ u.basis }}</div>
+                    </div>
+                    <div style="text-align:right">
+                      <div style="font-size:15px;font-weight:500;font-variant-numeric:tabular-nums">{{ u.value }}</div>
+                      <div style="font-size:11px;color:{{ u.color }}">{{ u.delta }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:15px 18px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
+                <div>
+                  <div style="font-size:15.5px;font-weight:500">Salud operativa</div>
+                  <div style="font-size:11.5px;color:rgba(233,233,237,0.5)">Advisor · anomalías · actividad</div>
+                </div>
+                <button onClick="{{ goAlerts }}" class="btn btn-ghost" style="font-size:12px">Alertas →</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ healthRows }}" as="h" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:10px;font-size:12.5px">
+                    <span style="width:7px;height:7px;border-radius:50%;flex:none;background:{{ h.color }}"></span>
+                    <span style="flex:1;color:rgba(233,233,237,0.82);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ h.name }}</span>
+                    <span style="color:rgba(233,233,237,0.55);font-variant-numeric:tabular-nums">{{ h.value }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-radius:8px;padding:15px 18px;background:linear-gradient(100deg,#232532,#2b2741);box-shadow:0 0 0 1px rgba(145,132,217,0.28);display:flex;align-items:center;gap:18px">
+            <div style="width:36px;height:36px;flex:none;border-radius:10px;display:grid;place-items:center;border:1px solid rgba(145,132,217,0.5);color:#b5abfc">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.5l1.7 4.3 4.3 1.7-4.3 1.7L12 15.5l-1.7-4.3L6 9.5l4.3-1.7L12 3.5z"></path><path d="M18 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z"></path></svg>
+            </div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:3px">
+                <span style="font-size:14.5px;font-weight:500">FinOps Agent</span>
+                <span style="font-size:9.5px;letter-spacing:0.07em;text-transform:uppercase;border:1px solid rgba(145,132,217,0.55);color:#b5abfc;border-radius:5px;padding:1px 6px">AWS Preview</span>
+              </div>
+              <div style="font-size:12.5px;color:rgba(233,233,237,0.6)">Hueco reservado sobre los mismos datos del CUR que alimentan este dashboard: preguntas en lenguaje natural, causas de anomalías y planes de ahorro. Conéctalo cuando salga de preview.</div>
+            </div>
+            <button onClick="{{ openAgent }}" class="btn btn-primary" style="flex:none">Abrir panel</button>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isCost }}" hint-placeholder-val="{{ false }}">
+        <section data-screen-label="Cost Explorer" style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div class="seg">
+              <label class="seg-opt"><input type="radio" name="grp" checked="{{ grpService }}" onChange="{{ setGroupService }}"></input>Servicio</label>
+              <label class="seg-opt"><input type="radio" name="grp" checked="{{ grpAccount }}" onChange="{{ setGroupAccount }}"></input>Cuenta</label>
+              <label class="seg-opt"><input type="radio" name="grp" checked="{{ grpRegion }}" onChange="{{ setGroupRegion }}"></input>Región</label>
+              <label class="seg-opt"><input type="radio" name="grp" checked="{{ grpTag }}" onChange="{{ setGroupTag }}"></input>Tag: Team</label>
+            </div>
+            <div style="flex:1"></div>
+            <div class="seg">
+              <label class="seg-opt"><input type="radio" name="per"></input>7d</label>
+              <label class="seg-opt"><input type="radio" name="per"></input>30d</label>
+              <label class="seg-opt"><input type="radio" name="per" checked="{{ true }}"></input>12m</label>
+            </div>
+            <button class="btn btn-secondary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M8 11l4 4 4-4M5 19.5h14"></path></svg>
+              Exportar CSV
+            </button>
+          </div>
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:16px 18px 12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px">
+              <div>
+                <div style="font-size:16px;font-weight:500">Gasto mensual por servicio</div>
+                <div style="font-size:12px;color:rgba(233,233,237,0.5)">Amortizado · 14 cuentas · sin impuestos</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:13px;font-size:11.5px;color:rgba(233,233,237,0.62);flex-wrap:wrap">
+                <sc-for list="{{ stackLegend }}" as="l" hint-placeholder-count="5">
+                  <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:{{ l.fill }};display:block"></span>{{ l.name }}</span>
+                </sc-for>
+              </div>
+            </div>
+            <svg viewBox="0 0 920 250" width="100%" height="250">
+              <sc-for list="{{ stackGrid }}" as="g" hint-placeholder-count="4">
+                <line x1="0" x2="920" y1="{{ g.y }}" y2="{{ g.y }}" stroke="rgba(233,233,237,0.07)"></line>
+              </sc-for>
+              <sc-for list="{{ stackRects }}" as="r" hint-placeholder-count="24">
+                <rect x="{{ r.x }}" y="{{ r.y }}" width="{{ r.w }}" height="{{ r.h }}" fill="{{ r.fill }}"></rect>
+              </sc-for>
+            </svg>
+            <div style="display:flex;justify-content:space-between;padding-top:6px;font-size:11px;color:rgba(233,233,237,0.45)">
+              <sc-for list="{{ months }}" as="m" hint-placeholder-count="12">
+                <span>{{ m }}</span>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:14px 6px 6px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding:0 12px 6px">
+              <div style="font-size:16px;font-weight:500">Desglose por {{ groupLabel }}</div>
+              <div style="font-size:12px;color:rgba(233,233,237,0.5)">Clic en una fila para el detalle</div>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>{{ groupLabel }}</th>
+                  <th style="text-align:right">Gasto MTD</th>
+                  <th style="text-align:right">Δ mes anterior</th>
+                  <th>Share</th>
+                  <th style="text-align:right">Forecast</th>
+                  <th style="text-align:right">Cobertura SP/RI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ breakdown }}" as="b" hint-placeholder-count="7">
+                  <tr onClick="{{ b.open }}" style="cursor:pointer">
+                    <td style="font-size:13.5px">{{ b.name }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums">{{ b.cost }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums;color:{{ b.deltaColor }}">{{ b.delta }}</td>
+                    <td style="width:150px">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <div style="flex:1;height:4px;border-radius:3px;background:rgba(233,233,237,0.09);overflow:hidden"><div style="width:{{ b.width }};height:100%;background:#796cbf"></div></div>
+                        <span style="font-size:11px;color:rgba(233,233,237,0.5);width:32px;text-align:right">{{ b.share }}</span>
+                      </div>
+                    </td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums;color:rgba(233,233,237,0.7)">{{ b.forecast }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums;color:{{ b.covColor }}">{{ b.coverage }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isTrail }}" hint-placeholder-val="{{ false }}">
+        <section data-screen-label="CloudTrail" style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">Eventos 24 h</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px">128,443</div>
+            </div>
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">AccessDenied</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px;color:var(--bad)">312</div>
+            </div>
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">Identidades activas</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px">47</div>
+            </div>
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(145,132,217,0.3);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">Eventos con impacto en coste</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px;color:#b5abfc">26</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:8px;background:#232532;border-radius:8px;padding:8px 12px;box-shadow:0 0 0 1px rgba(233,233,237,0.08);flex:1;min-width:260px">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(233,233,237,0.45)" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></svg>
+              <input class="input" value="{{ query }}" onChange="{{ setQuery }}" placeholder="Filtrar por eventName, usuario, IP o cuenta…" style="background:transparent;border:0;padding:0;min-height:0;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></input>
+            </div>
+            <button onClick="{{ toggleWrites }}" class="btn" style="border:1px solid {{ f.writes.border }};color:{{ f.writes.fg }};background:{{ f.writes.bg }}">Solo escrituras</button>
+            <button onClick="{{ toggleErrors }}" class="btn" style="border:1px solid {{ f.errors.border }};color:{{ f.errors.fg }};background:{{ f.errors.bg }}">Con error</button>
+            <button onClick="{{ toggleCost }}" class="btn" style="border:1px solid {{ f.cost.border }};color:{{ f.cost.fg }};background:{{ f.cost.bg }}">Impacto en coste</button>
+            <span style="font-size:12px;color:rgba(233,233,237,0.5)">{{ eventCount }} eventos</span>
+          </div>
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:6px 6px 4px">
+            <table class="table" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px">
+              <thead>
+                <tr>
+                  <th>Hora (UTC)</th>
+                  <th>eventName</th>
+                  <th>Identidad</th>
+                  <th>Cuenta</th>
+                  <th>Región</th>
+                  <th>IP origen</th>
+                  <th style="text-align:right">Resultado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ events }}" as="e" hint-placeholder-count="10">
+                  <tr onClick="{{ e.open }}" style="cursor:pointer">
+                    <td style="color:rgba(233,233,237,0.5);white-space:nowrap">{{ e.time }}</td>
+                    <td>
+                      <span style="color:{{ e.color }}">{{ e.name }}</span>
+                      <span style="color:rgba(233,233,237,0.35)"> · {{ e.source }}</span>
+                    </td>
+                    <td style="color:rgba(233,233,237,0.8)">{{ e.actor }}</td>
+                    <td style="color:rgba(233,233,237,0.6)">{{ e.account }}</td>
+                    <td style="color:rgba(233,233,237,0.6)">{{ e.region }}</td>
+                    <td style="color:rgba(233,233,237,0.55)">{{ e.ip }}</td>
+                    <td style="text-align:right"><span class="tag" style="background:{{ e.badgeBg }};color:{{ e.color }}">{{ e.result }}</span></td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isAdvisor }}" hint-placeholder-val="{{ false }}">
+        <section data-screen-label="Trusted Advisor" style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px">
+            <sc-for list="{{ taCards }}" as="c" hint-placeholder-count="5">
+              <button onClick="{{ c.select }}" style="text-align:left;font:inherit;cursor:pointer;border:0;border-radius:8px;padding:14px 15px;background:{{ c.bg }};box-shadow:0 0 0 1px {{ c.ring }}">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px">
+                  <span style="font-size:12.5px;color:rgba(233,233,237,0.75)">{{ c.name }}</span>
+                  <span style="width:7px;height:7px;border-radius:50%;background:{{ c.dot }}"></span>
+                </div>
+                <div style="font-size:25px;font-weight:500">{{ c.total }}</div>
+                <div style="font-size:11px;color:rgba(233,233,237,0.5);margin-top:3px">{{ c.detail }}</div>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:14px 6px 6px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding:0 12px 8px">
+              <div>
+                <div style="font-size:16px;font-weight:500">{{ taTitle }}</div>
+                <div style="font-size:12px;color:rgba(233,233,237,0.5)">Última evaluación hace 42 min · 14 cuentas</div>
+              </div>
+              <button class="btn btn-secondary" style="font-size:12.5px">Refrescar checks</button>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width:26px"></th>
+                  <th>Check</th>
+                  <th>Cuentas afectadas</th>
+                  <th style="text-align:right">Recursos</th>
+                  <th style="text-align:right">Ahorro estimado</th>
+                  <th style="text-align:right"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ taChecks }}" as="c" hint-placeholder-count="6">
+                  <tr onClick="{{ c.open }}" style="cursor:pointer">
+                    <td><span style="display:block;width:7px;height:7px;border-radius:50%;background:{{ c.color }}"></span></td>
+                    <td>
+                      <div style="font-size:13.5px">{{ c.name }}</div>
+                      <div style="font-size:11.5px;color:rgba(233,233,237,0.48)">{{ c.desc }}</div>
+                    </td>
+                    <td style="font-size:12.5px;color:rgba(233,233,237,0.7)">{{ c.accounts }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums">{{ c.resources }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ok)">{{ c.saving }}</td>
+                    <td style="text-align:right;color:rgba(233,233,237,0.4)">→</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isOptimize }}" hint-placeholder-val="{{ false }}">
+        <section data-screen-label="Optimización" style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:12px">
+            <div style="border-radius:8px;padding:16px 18px;background:linear-gradient(120deg,#232532,#2b2741);box-shadow:0 0 0 1px rgba(145,132,217,0.22)">
+              <div style="font-size:12.5px;color:rgba(233,233,237,0.6)">Ahorro potencial anualizado</div>
+              <div style="font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:6px 0 2px;color:var(--ok)">$761,760</div>
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">$63,480 al mes · 18 recomendaciones abiertas</div>
+              <div class="hr" style="margin:14px 0"></div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ savingSources }}" as="s" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:10px;font-size:12.5px">
+                    <span style="flex:1;color:rgba(233,233,237,0.78)">{{ s.name }}</span>
+                    <span style="font-variant-numeric:tabular-nums">{{ s.amount }}</span>
+                    <span style="width:54px;height:4px;border-radius:3px;background:rgba(233,233,237,0.1);overflow:hidden"><span style="display:block;width:{{ s.width }};height:100%;background:var(--ok)"></span></span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:16px 18px">
+              <div style="font-size:16px;font-weight:500;margin-bottom:4px">Cobertura de compromisos</div>
+              <div style="font-size:12px;color:rgba(233,233,237,0.5);margin-bottom:16px">Savings Plans y Reserved Instances sobre gasto elegible</div>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+                <sc-for list="{{ coverage }}" as="c" hint-placeholder-count="3">
+                  <div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;font-size:12.5px;margin-bottom:6px">
+                      <span style="color:rgba(233,233,237,0.7)">{{ c.name }}</span>
+                      <span style="font-size:15px;font-weight:500;color:{{ c.color }}">{{ c.pct }}</span>
+                    </div>
+                    <div style="height:6px;border-radius:4px;background:rgba(233,233,237,0.09);overflow:hidden"><div style="width:{{ c.pct }};height:100%;background:{{ c.color }};border-radius:4px"></div></div>
+                    <div style="font-size:11px;color:rgba(233,233,237,0.45);margin-top:6px">objetivo {{ c.target }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+            <sc-for list="{{ recs }}" as="r" hint-placeholder-count="6">
+              <button onClick="{{ r.open }}" style="text-align:left;font:inherit;cursor:pointer;border:0;border-radius:8px;padding:15px 16px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);display:flex;flex-direction:column;gap:9px" style-hover="box-shadow:0 0 0 1px rgba(145,132,217,0.45)">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                  <span style="font-size:10px;letter-spacing:0.09em;text-transform:uppercase;color:#b5abfc">{{ r.source }}</span>
+                  <span class="tag" style="background:{{ r.effortBg }};color:{{ r.effortFg }}">{{ r.effort }}</span>
+                </div>
+                <div style="font-size:15px;font-weight:500;line-height:1.25">{{ r.title }}</div>
+                <div style="font-size:12.5px;color:rgba(233,233,237,0.55);line-height:1.45">{{ r.desc }}</div>
+                <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:2px">
+                  <span style="font-size:20px;font-weight:500;color:var(--ok)">{{ r.saving }}</span>
+                  <span style="font-size:11px;color:rgba(233,233,237,0.45)">{{ r.account }}</span>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isResources }}" hint-placeholder-val="{{ false }}">
+        <section data-screen-label="Top recursos" style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{ resTabs }}" as="t" hint-placeholder-count="6">
+              <button onClick="{{ t.select }}" class="btn" style="border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};font-size:12.5px">
+                {{ t.name }}<span style="opacity:0.6"> · {{ t.count }}</span>
+              </button>
+            </sc-for>
+            <div style="flex:1"></div>
+            <div class="seg">
+              <label class="seg-opt"><input type="radio" name="ord" checked="{{ true }}"></input>Por coste</label>
+              <label class="seg-opt"><input type="radio" name="ord"></input>Por desperdicio</label>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">Gasto del servicio (MTD)</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px">{{ resSummary.spend }}</div>
+              <div style="font-size:11px;color:rgba(233,233,237,0.45);margin-top:2px">{{ resSummary.share }} del gasto total</div>
+            </div>
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">Recursos analizados</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px">{{ resSummary.count }}</div>
+              <div style="font-size:11px;color:rgba(233,233,237,0.45);margin-top:2px">{{ resSummary.accounts }}</div>
+            </div>
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">Top 10 = {{ resSummary.topShare }}</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px">{{ resSummary.top }}</div>
+              <div style="font-size:11px;color:rgba(233,233,237,0.45);margin-top:2px">concentración del gasto</div>
+            </div>
+            <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(217,180,127,0.3);padding:13px 15px">
+              <div style="font-size:12px;color:rgba(233,233,237,0.55)">Desperdicio detectado</div>
+              <div style="font-size:23px;font-weight:500;margin-top:4px;color:var(--warn)">{{ resSummary.waste }}</div>
+              <div style="font-size:11px;color:rgba(233,233,237,0.45);margin-top:2px">{{ resSummary.wasteCount }} recursos infrautilizados</div>
+            </div>
+          </div>
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:14px 6px 6px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding:0 12px 6px">
+              <div>
+                <div style="font-size:16px;font-weight:500">{{ resTitle }}</div>
+                <div style="font-size:12px;color:rgba(233,233,237,0.5)">Ordenado por coste mensual · métricas de CloudWatch · clic para ver el histórico de 3 meses</div>
+                <div style="display:flex;align-items:center;gap:14px;font-size:11.5px;margin-top:6px">
+                  <span style="display:flex;align-items:center;gap:6px;color:var(--bad)"><span style="width:7px;height:7px;border-radius:50%;background:var(--bad);display:block"></span>Infrautilizado &lt; 20%</span>
+                  <span style="display:flex;align-items:center;gap:6px;color:var(--ok)"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok);display:block"></span>Óptimo 20 – 60%</span>
+                  <span style="display:flex;align-items:center;gap:6px;color:var(--warn)"><span style="width:7px;height:7px;border-radius:50%;background:var(--warn);display:block"></span>Revisión &gt; 60%</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" style="font-size:12.5px">Exportar lista</button>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Recurso</th>
+                  <th>{{ resTypeLabel }}</th>
+                  <th>Cuenta · región</th>
+                  <th>{{ resMetricLabel }} · 14 d</th>
+                  <th style="text-align:right">Coste/mes</th>
+                  <th style="text-align:right">Δ</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ resources }}" as="r" hint-placeholder-count="10">
+                  <tr onClick="{{ r.open }}" style="cursor:pointer">
+                    <td>
+                      <div style="font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace">{{ r.id }}</div>
+                      <div style="font-size:11.5px;color:rgba(233,233,237,0.48)">{{ r.name }}</div>
+                    </td>
+                    <td><span class="tag tag-outline" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px">{{ r.type }}</span></td>
+                    <td style="font-size:12.5px;color:rgba(233,233,237,0.68)">{{ r.place }}</td>
+                    <td style="width:170px">
+                      <div style="display:flex;align-items:center;gap:9px">
+                        <div style="flex:1;height:4px;border-radius:3px;background:rgba(233,233,237,0.09);overflow:hidden"><div style="width:{{ r.metricWidth }};height:100%;background:{{ r.metricColor }}"></div></div>
+                        <span style="font-size:11.5px;color:rgba(233,233,237,0.62);width:56px;text-align:right;font-variant-numeric:tabular-nums">{{ r.metric }}</span>
+                      </div>
+                    </td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums">{{ r.cost }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums;color:{{ r.deltaColor }}">{{ r.delta }}</td>
+                    <td>
+                      <span class="tag" style="background:{{ r.stateBg }};color:{{ r.stateFg }}">{{ r.state }}</span>
+                      <div style="font-size:11px;color:rgba(233,233,237,0.42);margin-top:4px">{{ r.hint }}</div>
+                    </td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isAlerts }}" hint-placeholder-val="{{ false }}">
+        <section data-screen-label="Alertas" style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ anomalies }}" as="a" hint-placeholder-count="3">
+              <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px {{ a.ring }};padding:15px 18px;display:flex;align-items:center;gap:20px">
+                <div style="width:34px;height:34px;flex:none;border-radius:9px;display:grid;place-items:center;background:{{ a.iconBg }};color:{{ a.color }}">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3l9-16z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+                </div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:9px;margin-bottom:3px">
+                    <span style="font-size:15px;font-weight:500">{{ a.title }}</span>
+                    <span class="tag" style="background:{{ a.iconBg }};color:{{ a.color }}">{{ a.severity }}</span>
+                  </div>
+                  <div style="font-size:12.5px;color:rgba(233,233,237,0.55)">{{ a.meta }}</div>
+                  <div style="font-size:12.5px;color:rgba(233,233,237,0.75);margin-top:5px">Causa probable: {{ a.cause }}</div>
+                </div>
+                <svg viewBox="0 0 120 44" width="120" height="44" style="flex:none">
+                  <path d="{{ a.spark }}" fill="none" stroke="{{ a.color }}" stroke-width="1.8" stroke-linejoin="round"></path>
+                </svg>
+                <div style="text-align:right;flex:none">
+                  <div style="font-size:20px;font-weight:500;color:{{ a.color }}">{{ a.impact }}</div>
+                  <div style="font-size:11px;color:rgba(233,233,237,0.45)">impacto estimado</div>
+                </div>
+                <button onClick="{{ a.open }}" class="btn btn-primary" style="flex:none">Investigar</button>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:16px 18px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px">
+              <div>
+                <div style="font-size:16px;font-weight:500">Budgets</div>
+                <div style="font-size:12px;color:rgba(233,233,237,0.5)">AWS Budgets · alertas al 80% y 100%</div>
+              </div>
+              <button class="btn btn-secondary" style="font-size:12.5px">Nuevo budget</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 26px">
+              <sc-for list="{{ budgets }}" as="b" hint-placeholder-count="4">
+                <div>
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;font-size:13px;margin-bottom:6px">
+                    <span>{{ b.name }}</span>
+                    <span style="color:rgba(233,233,237,0.6);font-variant-numeric:tabular-nums">{{ b.spent }} / {{ b.limit }}</span>
+                  </div>
+                  <div style="height:6px;border-radius:4px;background:rgba(233,233,237,0.09);overflow:hidden">
+                    <div style="width:{{ b.width }};height:100%;background:{{ b.color }};border-radius:4px"></div>
+                  </div>
+                  <div style="font-size:11px;color:{{ b.color }};margin-top:5px">{{ b.note }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+    </div>
+  </main>
+
+  <sc-if value="{{ agentOpen }}" hint-placeholder-val="{{ false }}">
+    <aside style="position:fixed;top:0;right:0;bottom:0;width:390px;background:#1a1c2b;box-shadow:-1px 0 0 rgba(145,132,217,0.3),-24px 0 60px rgba(0,0,0,0.5);display:flex;flex-direction:column;z-index:40">
+      <div style="display:flex;align-items:center;gap:11px;padding:16px 18px;box-shadow:0 1px 0 rgba(233,233,237,0.08)">
+        <div style="width:30px;height:30px;flex:none;border-radius:8px;display:grid;place-items:center;border:1px solid rgba(145,132,217,0.5);color:#b5abfc">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.5l1.7 4.3 4.3 1.7-4.3 1.7L12 15.5l-1.7-4.3L6 9.5l4.3-1.7L12 3.5z"></path></svg>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:14.5px;font-weight:500">FinOps Agent</div>
+          <div style="font-size:11px;color:rgba(233,233,237,0.5)">No conectado · AWS preview</div>
+        </div>
+        <button onClick="{{ closeAgent }}" class="btn btn-icon btn-secondary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </button>
+      </div>
+      <div style="flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:14px">
+        <div style="border-radius:8px;background:rgba(145,132,217,0.09);box-shadow:0 0 0 1px rgba(145,132,217,0.25);padding:13px 14px;font-size:12.5px;color:rgba(233,233,237,0.78);line-height:1.5">
+          El agente FinOps de AWS está en <strong style="font-weight:500;color:#b5abfc">preview limitada</strong>. Este panel queda reservado: cuando esté disponible en la cuenta, se conecta aquí y el equipo pregunta en lenguaje natural sobre el gasto sin salir de la consola.
+        </div>
+        <div>
+          <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(233,233,237,0.42);margin-bottom:9px">Preguntas que podrá responder</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ agentPrompts }}" as="p" hint-placeholder-count="4">
+              <div style="border-radius:8px;background:#232532;box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:11px 13px;font-size:12.5px;color:rgba(233,233,237,0.62);opacity:0.75">“{{ p }}”</div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(233,233,237,0.42);margin-bottom:9px">Contexto que recibirá</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap">
+            <span class="tag tag-neutral">Cost Explorer</span>
+            <span class="tag tag-neutral">CloudTrail</span>
+            <span class="tag tag-neutral">Trusted Advisor</span>
+            <span class="tag tag-neutral">Budgets</span>
+            <span class="tag tag-neutral">Compute Optimizer</span>
+            <span class="tag tag-neutral">CloudWatch</span>
+            <span class="tag tag-neutral">Tags de asignación</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:14px 18px 18px;box-shadow:0 -1px 0 rgba(233,233,237,0.08)">
+        <div style="display:flex;gap:8px;align-items:center;opacity:0.5">
+          <input class="input" disabled="{{ true }}" placeholder="Pregunta al agente…"></input>
+          <button class="btn btn-primary" disabled="{{ true }}" style="flex:none">Enviar</button>
+        </div>
+        <button class="btn btn-secondary btn-block" style="margin-top:9px">Solicitar acceso a la preview</button>
+      </div>
+    </aside>
+  </sc-if>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:32px;background:rgba(22,24,38,0.72)">
+      <div onClick="{{ stop }}" style="width:min(700px,100%);max-height:82vh;overflow:auto;border-radius:14px;background:#232532;box-shadow:0 0 0 1px #595d6c,0 24px 60px rgba(0,0,0,0.65);padding:20px 22px">
+        <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:4px">
+          <div style="flex:1;min-width:0">
+            <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#b5abfc;margin-bottom:5px">{{ modal.kicker }}</div>
+            <div style="font-size:20px;font-weight:500;line-height:1.2">{{ modal.title }}</div>
+            <div style="font-size:12.5px;color:rgba(233,233,237,0.55);margin-top:4px">{{ modal.sub }}</div>
+          </div>
+          <button onClick="{{ closeModal }}" class="btn btn-icon btn-secondary" style="flex:none">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </button>
+        </div>
+        <div class="hr" style="margin:14px 0"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+          <sc-for list="{{ modal.stats }}" as="s" hint-placeholder-count="3">
+            <div>
+              <div style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:rgba(233,233,237,0.45)">{{ s.label }}</div>
+              <div style="font-size:17px;font-weight:500;margin-top:3px;color:{{ s.color }}">{{ s.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ modal.hasBody }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:16px;font-size:13px;line-height:1.6;color:rgba(233,233,237,0.78)">{{ modal.body }}</div>
+        </sc-if>
+        <sc-if value="{{ modal.hasChart }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:18px;border-radius:8px;background:rgba(233,233,237,0.035);box-shadow:0 0 0 1px rgba(233,233,237,0.07);padding:14px 16px 12px">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:10px">
+              <div>
+                <div style="font-size:13.5px;font-weight:500">{{ modal.chartTitle }}</div>
+                <div style="font-size:11.5px;color:rgba(233,233,237,0.5)">Últimos 90 días · media diaria de CloudWatch</div>
+              </div>
+              <div style="display:flex;gap:18px">
+                <sc-for list="{{ modal.chartStats }}" as="c" hint-placeholder-count="4">
+                  <div style="text-align:right">
+                    <div style="font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:rgba(233,233,237,0.42)">{{ c.label }}</div>
+                    <div style="font-size:14px;font-weight:500;color:{{ c.color }};font-variant-numeric:tabular-nums">{{ c.value }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <svg viewBox="0 0 640 150" width="100%" height="150" preserveAspectRatio="none" style="overflow:visible">
+              <line x1="0" x2="640" y1="{{ modal.y60 }}" y2="{{ modal.y60 }}" stroke="#d9b47f" stroke-width="1" stroke-dasharray="4 4"></line>
+              <line x1="0" x2="640" y1="{{ modal.y20 }}" y2="{{ modal.y20 }}" stroke="#d98a8a" stroke-width="1" stroke-dasharray="4 4"></line>
+              <path d="{{ modal.chartArea }}" fill="rgba(145,132,217,0.18)"></path>
+              <path d="{{ modal.chartPath }}" fill="none" stroke="#9184d9" stroke-width="1.6" stroke-linejoin="round"></path>
+            </svg>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:rgba(233,233,237,0.42);padding-top:6px">
+              <sc-for list="{{ modal.chartLabels }}" as="l" hint-placeholder-count="4">
+                <span>{{ l.t }}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;margin-top:12px;border-radius:8px;background:{{ modal.verdictBg }};padding:10px 12px">
+              <span style="width:7px;height:7px;border-radius:50%;flex:none;background:{{ modal.verdictColor }}"></span>
+              <div style="min-width:0">
+                <div style="font-size:13px;font-weight:500;color:{{ modal.verdictColor }}">{{ modal.verdict }}</div>
+                <div style="font-size:12px;color:rgba(233,233,237,0.65);line-height:1.45;margin-top:2px">{{ modal.verdictBody }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ modal.hasList }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:16px">
+            <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(233,233,237,0.42);margin-bottom:9px">{{ modal.listTitle }}</div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <sc-for list="{{ modal.list }}" as="i" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:10px;border-radius:8px;background:rgba(233,233,237,0.04);padding:9px 12px;font-size:12.5px">
+                  <span style="flex:1;font-family:ui-monospace,SFMono-Regular,Menlo,monospace">{{ i.name }}</span>
+                  <span style="color:rgba(233,233,237,0.55)">{{ i.meta }}</span>
+                  <span style="color:var(--ok);font-variant-numeric:tabular-nums">{{ i.value }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ modal.hasJson }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:16px">
+            <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(233,233,237,0.42);margin-bottom:8px">Registro CloudTrail</div>
+            <pre style="margin:0;max-height:260px;overflow:auto;border-radius:8px;background:#161826;box-shadow:0 0 0 1px rgba(233,233,237,0.08);padding:13px 14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.6;color:#cfd3e5">{{ modal.json }}</pre>
+          </div>
+        </sc-if>
+        <div style="display:flex;justify-content:flex-end;gap:9px;margin-top:20px">
+          <button onClick="{{ closeModal }}" class="btn btn-secondary">Cerrar</button>
+          <button onClick="{{ closeModal }}" class="btn btn-primary">{{ modal.action }}</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'dashboard', query: '', group: 'service', taCat: 'cost',
+    modal: null, agentOpen: false, fWrites: false, fErrors: false, fCost: false, resSvc: 'ec2', cudosPillar: 'ec2'
+  };
+
+  money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+  months() { return ['Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago']; }
+  spend() { return [402,418,431,455,441,462,470,478,466,489,495,487]; }
+
+  navFor(key) {
+    const on = this.state.screen === key;
+    return { bg: on ? 'rgba(145,132,217,0.14)' : 'transparent', fg: on ? '#d2cefd' : 'rgba(233,233,237,0.72)', bar: on ? '#9184d9' : 'transparent' };
+  }
+
+  pageMeta() {
+    return {
+      dashboard: ['Dashboard CUDOS', 'KPIs del CUR, tipos de cargo, cobertura de compromisos y unit economics'],
+      cost: ['Cost Explorer', 'Desglose de gasto por servicio, cuenta, región y tag'],
+      trail: ['CloudTrail', 'Eventos de API con foco en los que mueven el coste'],
+      advisor: ['Trusted Advisor', 'Checks por categoría en las 14 cuentas'],
+      optimize: ['Optimización', 'Recomendaciones de ahorro y cobertura de compromisos'],
+      resources: ['Top recursos', 'Qué recursos concretos consumen el gasto, servicio por servicio'],
+      alerts: ['Alertas y anomalías', 'Detección de anomalías de coste y estado de budgets']
+    }[this.state.screen];
+  }
+
+  servicesData() {
+    return [
+      ['Amazon EC2', 187400, '+3.1%', 'up'], ['Amazon S3', 62100, '-1.4%', 'down'],
+      ['Amazon RDS', 54800, '+0.8%', 'up'], ['Amazon EKS', 41900, '+11.2%', 'up'],
+      ['AWS Lambda', 31200, '+2.0%', 'up'], ['CloudFront', 24600, '-3.6%', 'down'],
+      ['DynamoDB', 19300, '+1.1%', 'up']
+    ];
+  }
+
+  accountsData() {
+    return [
+      ['prod-core (4471…8820)', 214800, '+2.4%', 'up'], ['data-platform (9932…1104)', 96400, '+14.6%', 'up'],
+      ['prod-eu (2210…7745)', 71200, '+1.2%', 'up'], ['staging (8814…3390)', 43600, '-6.8%', 'down'],
+      ['shared-services (5567…2201)', 30200, '+0.4%', 'up'], ['sandbox (1180…9934)', 18900, '+22.1%', 'up'],
+      ['security-tooling (7745…0012)', 12100, '-0.9%', 'down']
+    ];
+  }
+
+  regionsData() {
+    return [
+      ['us-east-1', 226300, '+2.9%', 'up'], ['eu-west-1', 104700, '+1.6%', 'up'],
+      ['us-west-2', 68400, '+5.4%', 'up'], ['eu-central-1', 41200, '-2.1%', 'down'],
+      ['ap-southeast-1', 28600, '+8.8%', 'up'], ['sa-east-1', 12300, '+0.6%', 'up'],
+      ['global (CloudFront/R53)', 5820, '-1.1%', 'down']
+    ];
+  }
+
+  tagsData() {
+    return [
+      ['Team: platform', 168900, '+2.2%', 'up'], ['Team: data', 112400, '+13.9%', 'up'],
+      ['Team: payments', 74600, '+0.7%', 'up'], ['Team: growth', 48300, '-4.2%', 'down'],
+      ['Team: ml-research', 39800, '+18.4%', 'up'], ['Team: corp-it', 21100, '+1.0%', 'up'],
+      ['Sin tag', 22200, '+6.1%', 'up']
+    ];
+  }
+
+  eventsData() {
+    return [
+      ['11:04:12', 'RunInstances', 'ec2.amazonaws.com', 'role/deploy-platform', 'prod-core', 'us-east-1', '52.14.88.201', 'Success', true, true],
+      ['11:02:47', 'CreateBucket', 's3.amazonaws.com', 'user/j.ferrer', 'data-platform', 'eu-west-1', '81.44.19.77', 'Success', true, true],
+      ['10:58:03', 'ModifyDBInstance', 'rds.amazonaws.com', 'role/dba-oncall', 'prod-core', 'us-east-1', '52.14.88.14', 'Success', true, true],
+      ['10:55:31', 'DeleteSnapshot', 'ec2.amazonaws.com', 'role/cleanup-lambda', 'staging', 'us-west-2', '10.24.7.19', 'Success', true, true],
+      ['10:52:18', 'AssumeRole', 'sts.amazonaws.com', 'user/m.cordero', 'shared-services', 'us-east-1', '81.44.19.12', 'Success', false, false],
+      ['10:49:56', 'CreateCluster', 'eks.amazonaws.com', 'role/data-pipeline', 'data-platform', 'eu-west-1', '34.240.11.8', 'Success', true, true],
+      ['10:47:22', 'PutBucketPolicy', 's3.amazonaws.com', 'user/l.navarro', 'prod-eu', 'eu-central-1', '81.44.19.90', 'AccessDenied', true, false],
+      ['10:44:09', 'DescribeInstances', 'ec2.amazonaws.com', 'role/finops-reader', 'prod-core', 'us-east-1', '52.14.88.33', 'Success', false, false],
+      ['10:41:37', 'PurchaseSavingsPlan', 'savingsplans.amazonaws.com', 'user/m.cordero', 'shared-services', 'us-east-1', '81.44.19.12', 'Success', true, true],
+      ['10:38:14', 'TerminateInstances', 'ec2.amazonaws.com', 'role/asg-scaler', 'prod-core', 'us-west-2', '10.11.4.2', 'Success', true, true],
+      ['10:35:50', 'CreateFunction', 'lambda.amazonaws.com', 'role/deploy-payments', 'prod-core', 'us-east-1', '52.14.88.77', 'Success', true, true],
+      ['10:33:02', 'DeleteBucket', 's3.amazonaws.com', 'user/r.pons', 'sandbox', 'us-east-1', '81.44.19.61', 'AccessDenied', true, false],
+      ['10:30:41', 'ConsoleLogin', 'signin.amazonaws.com', 'root', 'prod-core', 'us-east-1', '203.0.113.44', 'Failure', false, false],
+      ['10:27:19', 'StartDBCluster', 'rds.amazonaws.com', 'role/data-pipeline', 'data-platform', 'eu-west-1', '34.240.11.19', 'Success', true, true],
+      ['10:24:05', 'GetCostAndUsage', 'ce.amazonaws.com', 'role/finops-reader', 'shared-services', 'us-east-1', '52.14.88.33', 'Success', false, false]
+    ];
+  }
+
+  resultColor(r) {
+    if (r === 'Success') return '#84d9b3';
+    if (r === 'AccessDenied') return '#d9b47f';
+    return '#d98a8a';
+  }
+
+  taCatalog() {
+    return {
+      cost: { name: 'Cost Optimization', error: 3, warn: 12, ok: 24, checks: [
+        ['error', 'Low-utilization Amazon EC2 instances', 'CPU media < 10% durante 14 días', '6 cuentas', '184', '$21,400/mes'],
+        ['error', 'Idle load balancers', 'ALB/NLB sin requests en 7 días', '4 cuentas', '31', '$3,720/mes'],
+        ['warn', 'Unassociated Elastic IP addresses', 'EIP reservadas sin instancia', '5 cuentas', '58', '$1,160/mes'],
+        ['warn', 'Underutilized Amazon EBS volumes', 'Volúmenes gp2 con IOPS < 5%', '7 cuentas', '412', '$8,940/mes'],
+        ['warn', 'Savings Plans coverage', 'Cobertura de compute por debajo del objetivo', '3 cuentas', '—', '$18,300/mes'],
+        ['ok', 'Amazon RDS idle DB instances', 'Sin conexiones en 7 días', '2 cuentas', '0', '—']
+      ]},
+      perf: { name: 'Performance', error: 1, warn: 7, ok: 19, checks: [
+        ['error', 'Overutilized Amazon EBS magnetic volumes', 'Volúmenes magnetic saturados', '2 cuentas', '14', '—'],
+        ['warn', 'High utilization EC2 instances', 'CPU > 90% durante 4 días', '3 cuentas', '22', '—'],
+        ['warn', 'CloudFront cache hit ratio', 'Hit ratio por debajo del 80%', '2 cuentas', '6', '$1,940/mes'],
+        ['ok', 'Large number of security group rules', 'Reglas por SG dentro del límite', '14 cuentas', '0', '—']
+      ]},
+      sec: { name: 'Security', error: 4, warn: 9, ok: 31, checks: [
+        ['error', 'S3 bucket permissions', 'Buckets con acceso público de lectura', '3 cuentas', '7', '—'],
+        ['error', 'MFA on root account', 'Root sin MFA habilitado', '2 cuentas', '2', '—'],
+        ['warn', 'IAM access key rotation', 'Claves con más de 90 días', '8 cuentas', '46', '—'],
+        ['warn', 'Security groups — unrestricted access', '0.0.0.0/0 en puertos sensibles', '5 cuentas', '19', '—'],
+        ['ok', 'CloudTrail logging', 'Trail multi-región activo', '14 cuentas', '0', '—']
+      ]},
+      ft: { name: 'Fault Tolerance', error: 2, warn: 11, ok: 22, checks: [
+        ['error', 'Amazon RDS Multi-AZ', 'Instancias productivas single-AZ', '2 cuentas', '9', '—'],
+        ['warn', 'EBS snapshots', 'Volúmenes sin snapshot en 30 días', '6 cuentas', '87', '—'],
+        ['warn', 'Auto Scaling group health check', 'Health check EC2 en lugar de ELB', '4 cuentas', '12', '—'],
+        ['ok', 'Amazon S3 versioning', 'Versionado activo en buckets críticos', '11 cuentas', '0', '—']
+      ]},
+      lim: { name: 'Service Limits', error: 0, warn: 5, ok: 40, checks: [
+        ['warn', 'VPC Elastic IP limit', 'Uso por encima del 80% del límite', '3 cuentas', '3', '—'],
+        ['warn', 'EC2 On-Demand vCPU limit', 'us-east-1 al 86% del límite', '1 cuenta', '1', '—'],
+        ['ok', 'RDS DB instances', 'Uso al 42% del límite', '14 cuentas', '0', '—']
+      ]}
+    };
+  }
+
+  recsData() {
+    return [
+      ['Compute Optimizer', 'Rightsizing de 62 instancias m5 → m6g', 'Migración a Graviton con el mismo perfil de memoria; ahorro sostenido sin cambios de arquitectura.', '$18,240/mes', 'Medio', 'prod-core'],
+      ['Savings Plans', 'Compute Savings Plan a 1 año', 'Cobertura actual 61%; comprometer $9.8k/h eleva la cobertura al 84% del gasto elegible.', '$16,900/mes', 'Bajo', 'shared-services'],
+      ['Idle Resources', 'Apagar 184 instancias con CPU < 10%', 'Instancias de dev y batch encendidas 24/7 sin actividad relevante en 14 días.', '$11,320/mes', 'Bajo', '6 cuentas'],
+      ['Storage', 'Ciclo de vida S3 a Intelligent-Tiering', '412 TB en Standard sin accesos en 90 días; transición automática por edad.', '$7,480/mes', 'Bajo', 'data-platform'],
+      ['Trusted Advisor', 'Eliminar 31 load balancers ociosos', 'ALB/NLB sin requests en 7 días, la mayoría de entornos de test ya retirados.', '$5,620/mes', 'Bajo', 'staging'],
+      ['Compute Optimizer', 'Reducir 412 volúmenes EBS gp2 → gp3', 'Mismo rendimiento con menor coste por GB y IOPS base incluidas.', '$3,920/mes', 'Medio', '7 cuentas']
+    ];
+  }
+
+  anomaliesData() {
+    return [
+      ['Pico de gasto en Amazon EKS', 'Crítica', 'data-platform · eu-west-1 · detectado hace 6 h', 'Nuevo node group m6i.8xlarge escalado a 40 nodos por el pipeline de ingesta', '+$5,840/día', '#d98a8a', [8,10,9,11,12,14,26,38,41], 'RunInstances y CreateNodegroup por role/data-pipeline'],
+      ['Transferencia de datos NAT Gateway', 'Crítica', 'prod-core · us-east-1 · detectado hace 14 h', 'Tráfico inter-AZ sin VPC endpoint para S3 desde el clúster de payments', '+$3,300/día', '#d98a8a', [12,13,12,14,18,22,25,31,34], 'Aumento del 240% en GB procesados'],
+      ['Sandbox por encima de lo habitual', 'Media', 'sandbox · us-east-1 · detectado hace 2 d', 'Instancias GPU g5.12xlarge encendidas fuera de horario laboral', '+$980/día', '#d9b47f', [4,5,4,6,7,9,8,11,12], 'RunInstances por user/r.pons sin tag de proyecto']
+    ];
+  }
+
+  sparkPath(vals) {
+    const max = Math.max.apply(null, vals), min = Math.min.apply(null, vals);
+    return vals.map((v, i) => {
+      const x = (i / (vals.length - 1)) * 118 + 1;
+      const y = 40 - ((v - min) / (max - min || 1)) * 34;
+      return (i ? 'L' : 'M') + x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+
+  openModal(m) { this.setState({ modal: m }); }
+
+  eventModal(e) {
+    const json = JSON.stringify({
+      eventVersion: '1.09', eventTime: '2026-08-04T' + e[0] + 'Z', eventSource: e[2], eventName: e[1],
+      awsRegion: e[5], sourceIPAddress: e[6], userAgent: 'aws-cli/2.15.4 Python/3.11',
+      userIdentity: { type: e[3].indexOf('role/') === 0 ? 'AssumedRole' : 'IAMUser', arn: 'arn:aws:iam::447188208820:' + e[3], accountId: '447188208820' },
+      requestParameters: { instanceType: 'm6i.4xlarge', maxCount: 4, minCount: 4 },
+      responseElements: { requestId: '8f31c0b2-4d19-4a77-9e0f-2b1c7a55e3d1' },
+      readOnly: !e[8], managementEvent: true, eventCategory: 'Management',
+      errorCode: e[7] === 'Success' ? undefined : e[7]
+    }, null, 2);
+    return {
+      kicker: 'CloudTrail · evento', title: e[1], sub: e[2] + ' · ' + e[0] + ' UTC · ' + e[4],
+      stats: [
+        { label: 'Identidad', value: e[3], color: '#e9e9ed' },
+        { label: 'Resultado', value: e[7], color: this.resultColor(e[7]) },
+        { label: 'Impacto en coste', value: e[9] ? 'Sí — recurso facturable' : 'No', color: e[9] ? '#d9b47f' : 'rgba(233,233,237,0.6)' }
+      ],
+      hasBody: true,
+      body: e[9] ? 'Este evento crea o modifica recursos facturables. LedgerOps lo correlaciona con el gasto de las 24 h siguientes en ' + e[4] + ' para atribuir variaciones de coste a un cambio concreto.' : 'Evento de solo lectura: no genera cargos directos. Se conserva para auditoría de acceso.',
+      hasList: false, list: [], listTitle: '', hasJson: true, json: json, action: 'Correlacionar con coste'
+    };
+  }
+
+  utilState(u, kind, saving) {
+    const warn = { fg: '#d9b47f', bg: 'rgba(217,180,127,0.16)' };
+    const bad = { fg: '#d98a8a', bg: 'rgba(217,138,138,0.16)' };
+    const ok = { fg: '#84d9b3', bg: 'rgba(132,217,179,0.14)' };
+    if (kind === 'compute') {
+      if (u >= 60) return Object.assign({ label: 'Revisión' }, warn);
+      if (u < 20) return Object.assign({ label: 'Infrautilizado' }, bad);
+      return Object.assign({ label: 'Óptimo' }, ok);
+    }
+    if (saving > 0) return Object.assign({ label: 'Con oportunidad' }, warn);
+    return Object.assign({ label: 'Óptimo' }, ok);
+  }
+
+  actionType(action) {
+    if (!action || action === 'Sin acción') return 'none';
+    if (/Reducir|Consolidar|nodos|Eliminar|Apagad|Apagar|Snapshot|Deshabilitar|Scheduler|autoscaler|parada/i.test(action)) return 'reduce';
+    if (/Renovar|Savings Plan|cobertura|Spot/i.test(action)) return 'commit';
+    return 'migrate';
+  }
+
+  history(id, avg, trendPP) {
+    let seed = 0;
+    for (let i = 0; i < id.length; i++) seed = (seed * 31 + id.charCodeAt(i)) % 100000;
+    const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+    const vals = [];
+    const drift = trendPP || 0;
+    for (let d = 0; d < 90; d++) {
+      const weekly = Math.sin((d / 7) * Math.PI * 2) * avg * 0.16;
+      const weekend = (d % 7 === 5 || d % 7 === 6) ? -avg * 0.22 : 0;
+      const noise = (rnd() - 0.5) * avg * 0.3;
+      const spike = rnd() > 0.965 ? avg * 0.55 : 0;
+      const v = avg + weekly + weekend + noise + spike + drift * (d / 90 - 0.5);
+      vals.push(Math.max(1, Math.min(99, v)));
+    }
+    const cap = Math.min(97, avg * 1.35), rawMax = Math.max.apply(null, vals);
+    let peakIdx = 0;
+    for (let i = 0; i < vals.length; i++) if (vals[i] > vals[peakIdx]) peakIdx = i;
+    const band = cap * 0.9;
+    if (rawMax > avg) for (let i = 0; i < vals.length; i++) if (vals[i] > avg) vals[i] = avg + (vals[i] - avg) * ((band - avg) / (rawMax - avg));
+    vals[peakIdx] = cap;
+    const W = 640, H = 150;
+    const pt = (v, i) => [(i / 89) * W, H - (v / 100) * H];
+    const path = vals.map((v, i) => { const p = pt(v, i); return (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    const sorted = vals.slice().sort((a, b) => a - b);
+    const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+    const first = vals.slice(0, 30).reduce((a, b) => a + b, 0) / 30;
+    const last = vals.slice(60).reduce((a, b) => a + b, 0) / 30;
+    return {
+      path: path, area: path + ' L' + W + ',' + H + ' L0,' + H + ' Z',
+      mean: mean, p95: sorted[Math.floor(0.95 * 89)], peak: sorted[89], min: sorted[0],
+      trend: last - first
+    };
+  }
+
+  historyModal(id, util, metricLabel, cost, typeStr, deltaStr, action, saving, kind) {
+    const dPct = parseFloat(String(deltaStr).replace('%', '')) || 0;
+    const trendPP = Math.max(-30, Math.min(30, util * dPct / 100));
+    const h = this.history(id, util, trendPP);
+    const r1 = v => Math.round(v) + '%';
+    const st = this.utilState(util, kind, saving);
+    const type = this.actionType(action);
+    const money = this.money(saving) + '/mes';
+    const gap = util - h.mean;
+    const win = Math.abs(gap) >= 3
+      ? ' Ventanas distintas: 14 d al ' + r1(util) + ' frente a 90 d al ' + r1(h.mean) + ', así que es ' + (gap > 0 ? 'un pico reciente, no una tendencia' : 'una caída reciente sobre una base más alta') + '.'
+      : '';
+    let verdict, vBody, vColor;
+    if (kind === 'compute') {
+      if (util >= 60 && type === 'reduce') {
+        verdict = 'Revisar dimensionamiento del conjunto';
+        vBody = 'Trabaja al ' + r1(util) + ' (14 d; media 90 d ' + r1(h.mean) + ', p95 ' + r1(h.p95) + '): individualmente está bien dimensionada, así que el ahorro no está en bajar su tamaño sino en el número de recursos. La acción propuesta —' + action + '— libera ' + money + ' sin bajar de la banda objetivo.';
+        vColor = '#d9b47f';
+      } else if (util >= 60 && type !== 'none') {
+        verdict = 'Uso alto: mantener tamaño';
+        vBody = 'Uso del ' + r1(util) + ' en 14 d, media de 90 d al ' + r1(h.mean) + ' y p95 al ' + r1(h.p95) + ': el tamaño es el correcto, no toques capacidad. El ahorro viene de ' + action + ' (' + money + '), que no altera el rendimiento.';
+        vColor = '#d9b47f';
+      } else if (util >= 60) {
+        verdict = 'Subir un escalón de tamaño';
+        vBody = 'Uso del ' + r1(util) + ' en 14 d, media de 90 d al ' + r1(h.mean) + ', p95 al ' + r1(h.p95) + ' y tendencia ' + (h.trend > 2 ? 'creciente (+' + Math.round(h.trend) + ' pp en 90 d)' : 'estable') + ': poco margen para picos. Un escalón más grande añade unos ' + this.money(cost * 0.9) + '/mes; conviene resolverlo antes de comprometer Savings Plans a 3 años sobre este tamaño.';
+        vColor = '#d9b47f';
+      } else if (util < 20) {
+        verdict = type === 'none' ? 'Candidato a apagado' : 'Bajar de tamaño o apagar';
+        vBody = 'Uso del ' + r1(util) + ' en 14 d y media de 90 d al ' + r1(h.mean) + ' (p95 ' + r1(h.p95) + '): sobredimensionado los 90 días, no solo en los últimos 14. ' + (type === 'none' ? 'No hay acción registrada: valida con el equipo propietario si el recurso sigue siendo necesario.' : 'La acción propuesta —' + action + '— libera ' + money + ' sin tocar el p95 de servicio.');
+        vColor = '#d98a8a';
+      } else if (type !== 'none') {
+        verdict = 'Mantener tamaño, aplicar la acción';
+        vBody = 'Uso del ' + r1(util) + ' en 14 d y media de 90 d al ' + r1(h.mean) + ' (p95 ' + r1(h.p95) + '): dentro de la banda objetivo (20–60%), el tamaño es correcto. El ahorro viene de ' + action + ' (' + money + ') a igual capacidad.';
+        vColor = '#84d9b3';
+      } else {
+        verdict = 'Mantener tamaño';
+        vBody = 'Uso del ' + r1(util) + ' en 14 d y media de 90 d al ' + r1(h.mean) + ' (p95 ' + r1(h.p95) + '): banda objetivo (20–60%) y sin acción pendiente. Buen candidato a cobertura con Savings Plans o RI, porque el tamaño no va a cambiar a corto plazo.';
+        vColor = '#84d9b3';
+      }
+      vBody += win;
+    } else if (type === 'reduce') {
+      verdict = 'Retirar capacidad ociosa';
+      vBody = metricLabel.toLowerCase() + ' del ' + r1(h.mean) + ' de media en 90 días, sin recuperación en el último mes. ' + action + ' libera ' + money + ' y no afecta a ningún consumidor activo.';
+      vColor = '#d98a8a';
+    } else if (type === 'migrate') {
+      verdict = 'Cambiar de configuración, no de tamaño';
+      vBody = metricLabel.toLowerCase() + ' del ' + r1(h.mean) + ' de media: el patrón de uso es estable, lo que sobra es la clase o el parámetro elegido. ' + action + ' mantiene el mismo servicio por ' + money + ' menos.';
+      vColor = '#d9b47f';
+    } else if (type === 'commit') {
+      verdict = 'Mantener y asegurar el compromiso';
+      vBody = metricLabel.toLowerCase() + ' del ' + r1(h.mean) + ' de media y estable: el recurso se queda. ' + action + ' aporta ' + money + ' sin cambiar nada de la configuración.';
+      vColor = '#84d9b3';
+    } else {
+      verdict = 'Sin acción: configuración correcta';
+      vBody = metricLabel.toLowerCase() + ' del ' + r1(h.mean) + ' de media en 90 días, coherente con la clase elegida y sin desperdicio detectado. Revisar de nuevo si el patrón de acceso cambia.';
+      vColor = '#84d9b3';
+    }
+    return {
+      hasChart: true, chartTitle: metricLabel.split(' ')[0] + ' · media diaria · 90 días · ' + typeStr,
+      chartPath: h.path, chartArea: h.area,
+      y60: (150 - 0.6 * 150).toFixed(1), y20: (150 - 0.2 * 150).toFixed(1),
+      chartStats: [
+        { label: 'Media 90 d', value: r1(h.mean), color: st.fg },
+        { label: 'p95', value: r1(h.p95), color: '#e9e9ed' },
+        { label: 'Pico', value: r1(h.peak), color: '#e9e9ed' },
+        { label: 'Tendencia', value: (h.trend >= 0 ? '+' : '') + Math.round(h.trend) + ' pp', color: h.trend > 2 ? '#d9b47f' : h.trend < -2 ? '#84d9b3' : 'rgba(233,233,237,0.6)' }
+      ],
+      chartLabels: [{ t: 'May' }, { t: 'Jun' }, { t: 'Jul' }, { t: 'Ago' }],
+      verdict: verdict, verdictBody: vBody, verdictColor: vColor,
+      verdictBg: vColor === '#84d9b3' ? 'rgba(132,217,179,0.10)' : vColor === '#d9b47f' ? 'rgba(217,180,127,0.10)' : 'rgba(217,138,138,0.10)'
+    };
+  }
+
+  resourceCatalog() {
+    return {
+      ec2: { name: 'EC2', count: 1284, kind: 'compute', typeLabel: 'Tipo de instancia', metricLabel: 'CPU media',
+        summary: { spend: '$187,400', share: '38.5%', count: '1,284', accounts: '11 cuentas · 6 regiones', top: '$61,900', topShare: '33%', waste: '$29,800', wasteCount: 184 },
+        rows: [
+          ['i-0a3f19c74b2e8d551', 'eks-data-ingest-node-01', 'm6i.8xlarge', 'data-platform · eu-west-1', '78%', 78, 11840, '+142%', 'Óptimo', 'Nodo del pipeline de ingesta que ha absorbido el escalado a 40 nodos del martes. La CPU acompaña al coste: el gasto es real, no desperdicio, pero el tamaño del node group sí es revisable.', 'Reducir node group a 12 nodos', 4200],
+          ['i-04c81ba9de7712f30', 'payments-api-prod-03', 'm5.4xlarge', 'prod-core · us-east-1', '54%', 54, 9210, '+3.1%', 'Migrable', 'Perfil estable de CPU y memoria durante 90 días. Candidata directa a Graviton con el mismo tamaño de memoria.', 'm5.4xlarge → m6g.4xlarge', 1980],
+          ['i-07bb2f5c1099ae431', 'ml-training-gpu-02', 'g5.12xlarge', 'sandbox · us-east-1', '9%', 9, 8640, '+22.1%', 'Infrautilizado', 'Instancia GPU encendida 24/7 con uso concentrado en 3 h laborables. Es el mayor contribuyente a la anomalía de sandbox.', 'Scheduler de apagado 20:00–07:00', 5900],
+          ['i-0dd41c8827fa3b019', 'batch-etl-worker-11', 'r6i.4xlarge', 'data-platform · eu-west-1', '31%', 31, 6420, '+8.4%', 'Sobredimensionado', 'Memoria al 22% de media y picos por debajo del 40%. Baja un escalón sin riesgo para el batch nocturno.', 'r6i.4xlarge → r6g.2xlarge', 2410],
+          ['i-0f92ab3e5510cc784', 'legacy-monolith-web-01', 'm4.10xlarge', 'prod-core · us-east-1', '22%', 22, 5980, '—', 'Sobredimensionado', 'Familia m4 sin actualizar desde 2019. Migrar a m6i reduce coste por vCPU un 32% con más rendimiento.', 'm4.10xlarge → m6i.4xlarge', 3120],
+          ['i-0b7719ce4d8a02f61', 'search-index-prod-04', 'c6i.4xlarge', 'prod-eu · eu-central-1', '67%', 67, 4890, '+1.2%', 'Óptimo', 'Uso alineado con el tipo de instancia. Cubierta parcialmente por Savings Plan al 61%.', 'Ampliar cobertura Savings Plan', 780],
+          ['i-02ce8d1ab4470f993', 'jenkins-builder-05', 'c5.9xlarge', 'shared-services · us-east-1', '13%', 13, 4120, '-4.6%', 'Infrautilizado', 'Runner de CI activo solo en horario laboral: 71% del tiempo por debajo del 5% de CPU.', 'Migrar a fleet spot autoscalado', 2740],
+          ['i-091ab4fe27c30d5b8', 'staging-app-cluster-02', 'm5.2xlarge', 'staging · us-west-2', '8%', 8, 3760, '-6.8%', 'Infrautilizado', 'Entorno de staging encendido fin de semana incluido, sin despliegues en 12 días.', 'Apagado automático fuera de sprint', 2900],
+          ['i-05ffb2210cc84a37d', 'redis-proxy-prod-01', 'r5.2xlarge', 'prod-core · us-east-1', '49%', 49, 3210, '+0.8%', 'Migrable', 'Carga estable, memoria al 58%. Graviton compatible según el análisis de binarios.', 'r5.2xlarge → r6g.2xlarge', 690],
+          ['i-08a1c0d3ff5b71e40', 'video-transcode-worker-07', 'c6a.8xlarge', 'prod-eu · eu-west-1', '41%', 41, 2980, '+5.4%', 'Migrable', 'Trabajo por lotes tolerante a interrupciones: perfil ideal para Spot con capacity rebalance.', 'On-Demand → Spot (70% mix)', 1610]
+        ]},
+      rds: { name: 'RDS', count: 96, kind: 'compute', typeLabel: 'Clase de instancia', metricLabel: 'Conexiones vs. límite',
+        summary: { spend: '$54,800', share: '11.3%', count: '96', accounts: '8 cuentas · 5 regiones', top: '$31,200', topShare: '57%', waste: '$9,140', wasteCount: 21 },
+        rows: [
+          ['payments-primary', 'Aurora PostgreSQL · writer', 'db.r6g.8xlarge', 'prod-core · us-east-1', '72%', 72, 9840, '+2.2%', 'Óptimo', 'Writer principal de pagos con Multi-AZ. Uso alineado con la clase; cubierta por RI a 1 año.', 'Renovar RI (vence en 41 días)', 1240],
+          ['analytics-warehouse', 'Aurora PostgreSQL · reader', 'db.r6i.4xlarge', 'data-platform · eu-west-1', '38%', 38, 7120, '+14.6%', 'Sobredimensionado', 'Reader con picos solo durante la ventana de dbt (03:00–05:00). El resto del día por debajo del 20%.', 'Migrar a Aurora Serverless v2', 3180],
+          ['orders-legacy', 'MySQL 5.7 · single-AZ', 'db.m5.4xlarge', 'prod-core · us-east-1', '19%', 19, 5460, '—', 'Sobredimensionado', 'Instancia legacy sin Multi-AZ y con motor en fin de soporte extendido: riesgo y coste a la vez.', 'db.m5.4xlarge → db.m6g.2xlarge', 2100],
+          ['reporting-replica-02', 'PostgreSQL · read replica', 'db.r5.2xlarge', 'prod-eu · eu-central-1', '6%', 6, 3980, '-1.1%', 'Infrautilizado', 'Réplica con 2 conexiones de media: los informes migraron a Athena hace dos meses.', 'Eliminar réplica', 3980],
+          ['sessions-cache-db', 'MySQL 8.0', 'db.t3.2xlarge', 'staging · us-west-2', '11%', 11, 1420, '-3.4%', 'Infrautilizado', 'Base de datos de sesiones en staging sin tráfico desde el último ciclo de pruebas.', 'Snapshot y parada programada', 1420]
+        ]},
+      s3: { name: 'S3', count: 412, kind: 'other', typeLabel: 'Clase de almacenamiento', metricLabel: 'Accesos',
+        summary: { spend: '$62,100', share: '12.8%', count: '412 buckets', accounts: '12 cuentas · 6 regiones', top: '$38,400', topShare: '62%', waste: '$11,900', wasteCount: 74 },
+        rows: [
+          ['acme-datalake-raw', 'Data lake · zona raw', 'Standard · 214 TB', 'data-platform · eu-west-1', '4%', 4, 14820, '+9.1%', 'Migrable', 'El 96% de los objetos no se lee desde su ingesta. Intelligent-Tiering mueve la capa fría sin cambiar rutas.', 'Standard → Intelligent-Tiering', 5940],
+          ['acme-clickstream-events', 'Eventos de producto', 'Standard · 88 TB', 'data-platform · us-east-1', '31%', 31, 8940, '+4.2%', 'Migrable', 'Consultas concentradas en los últimos 30 días; el histórico se puede pasar a Glacier IR.', 'Lifecycle a Glacier IR (>90 d)', 2610],
+          ['acme-backups-prod', 'Backups aplicativos', 'Standard-IA · 61 TB', 'prod-core · us-east-1', '12%', 12, 5210, '+0.7%', 'Óptimo', 'Clase correcta para el patrón de restauración. Versionado activo sin política de expiración.', 'Expirar versiones no actuales (>180 d)', 1040],
+          ['acme-cloudtrail-archive', 'Logs de auditoría', 'Standard · 34 TB', 'security-tooling · us-east-1', '1%', 1, 3860, '+1.4%', 'Infrautilizado', 'Retención de 7 años en Standard por defecto: candidato claro a Glacier Deep Archive.', 'Lifecycle a Deep Archive (>30 d)', 3480],
+          ['acme-static-assets-eu', 'Assets web con CloudFront', 'Standard · 9 TB', 'prod-eu · eu-central-1', '88%', 88, 2140, '-2.1%', 'Óptimo', 'Bucket de alto acceso detrás de CDN, con hit ratio del 91%.', 'Sin acción', 0]
+        ]},
+      eks: { name: 'EKS', count: 22, kind: 'compute', typeLabel: 'Tipo de nodo', metricLabel: 'Request vs. uso real',
+        summary: { spend: '$41,900', share: '8.6%', count: '22 clústeres', accounts: '5 cuentas · 4 regiones', top: '$28,600', topShare: '68%', waste: '$8,300', wasteCount: 9 },
+        rows: [
+          ['data-ingest-prod', 'Node group ingesta · 40 nodos', 'm6i.8xlarge', 'data-platform · eu-west-1', '81%', 81, 16400, '+142%', 'Óptimo', 'Origen de la anomalía crítica: escalado manual a 40 nodos que no se revirtió tras la carga.', 'Reducir a 12 nodos', 4200],
+          ['payments-prod', 'Node group API · 18 nodos', 'c6i.4xlarge', 'prod-core · us-east-1', '58%', 58, 9210, '+2.4%', 'Migrable', 'Requests de CPU un 40% por encima del uso real: bin packing mejorable con Karpenter.', 'Consolidar con Karpenter', 2210],
+          ['ml-platform', 'Node group GPU · 6 nodos', 'g5.4xlarge', 'data-platform · us-east-1', '24%', 24, 7480, '+18.4%', 'Infrautilizado', 'GPU reservadas para notebooks interactivos con uso medio del 24%.', 'Time-sharing de GPU + escalado a 0', 3120],
+          ['internal-tools', 'Node group general · 9 nodos', 'm6g.2xlarge', 'shared-services · us-east-1', '62%', 62, 4120, '+0.9%', 'Óptimo', 'Ya en Graviton, con requests ajustados y HPA activo.', 'Sin acción', 0],
+          ['staging-cluster', 'Node group staging · 12 nodos', 'm5.2xlarge', 'staging · us-west-2', '14%', 14, 3680, '-6.8%', 'Infrautilizado', 'Clúster de staging con 12 nodos fijos y sin escalado a cero fuera de horario.', 'Cluster autoscaler mín. 2 nodos', 2480]
+        ]},
+      lambda: { name: 'Lambda', count: 1840, kind: 'other', typeLabel: 'Memoria configurada', metricLabel: 'Memoria usada / asignada',
+        summary: { spend: '$31,200', share: '6.4%', count: '1,840 funciones', accounts: '10 cuentas · 6 regiones', top: '$18,900', topShare: '61%', waste: '$4,600', wasteCount: 128 },
+        rows: [
+          ['events-fanout-processor', 'Procesador de eventos', '3008 MB', 'prod-core · us-east-1', '34%', 34, 8940, '+6.2%', 'Sobredimensionado', 'Usa 1 GB de los 3 GB asignados. Bajar memoria reduce coste sin afectar a la duración p95.', '3008 MB → 1024 MB', 3020],
+          ['image-resize-api', 'Transformación de imágenes', '2048 MB', 'prod-eu · eu-west-1', '78%', 78, 5210, '+2.0%', 'Óptimo', 'Relación memoria/duración cerca del óptimo según Compute Optimizer.', 'Sin acción', 0],
+          ['nightly-report-builder', 'Informes nocturnos', '1536 MB', 'shared-services · us-east-1', '41%', 41, 2840, '+1.1%', 'Migrable', 'Ejecución de 9 minutos por invocación: candidata a arm64 y a Step Functions.', 'x86 → arm64 (Graviton)', 560],
+          ['auth-token-validator', 'Validación de tokens', '512 MB', 'prod-core · us-east-1', '86%', 86, 1920, '+0.4%', 'Óptimo', 'Función de alto volumen bien dimensionada, 240 M invocaciones/mes.', 'Sin acción', 0],
+          ['legacy-cron-sync', 'Sincronización legacy', '1024 MB', 'sandbox · us-east-1', '7%', 7, 640, '—', 'Infrautilizado', 'Falla en el 98% de las invocaciones desde hace 3 semanas y sigue ejecutándose cada 5 min.', 'Deshabilitar regla EventBridge', 640]
+        ]},
+      ebs: { name: 'EBS', count: 3120, kind: 'other', typeLabel: 'Tipo de volumen', metricLabel: 'IOPS usadas / provisionadas',
+        summary: { spend: '$18,600', share: '3.8%', count: '3,120 volúmenes', accounts: '11 cuentas · 6 regiones', top: '$7,400', topShare: '40%', waste: '$8,940', wasteCount: 412 },
+        rows: [
+          ['vol-0c41ff8b2e7719a03', 'data-lake-scratch', 'gp2 · 16 TB', 'data-platform · eu-west-1', '3%', 3, 2140, '+1.8%', 'Migrable', 'Volumen gp2 grande con IOPS muy por debajo de lo provisionado: gp3 baja el coste por GB un 20%.', 'gp2 → gp3', 430],
+          ['vol-07a9d3c5510bb2f81', 'db-backup-staging', 'io1 · 4 TB · 20k IOPS', 'staging · us-west-2', '5%', 5, 1980, '—', 'Sobredimensionado', 'IOPS provisionadas para una prueba de carga de 2023 que nunca se revirtieron.', 'io1 → gp3 con 6k IOPS', 1490],
+          ['vol-0b12ee7743a9cd560', 'ml-datasets-cache', 'gp3 · 8 TB', 'data-platform · us-east-1', '62%', 62, 1210, '+3.2%', 'Óptimo', 'Uso coherente con el throughput contratado.', 'Sin acción', 0],
+          ['vol-091cc8ab4470ff32d', 'orphan-legacy-web-01', 'gp2 · 2 TB', 'prod-core · us-east-1', '0%', 0, 860, '—', 'Infrautilizado', 'Volumen desasociado desde hace 214 días, con snapshot reciente disponible.', 'Snapshot y eliminar volumen', 860],
+          ['vol-05de210ccff84a3b7', 'jenkins-workspace', 'gp2 · 1.5 TB', 'shared-services · us-east-1', '9%', 9, 640, '-1.2%', 'Migrable', 'Workspace efímero de CI que puede vivir en gp3 con menos throughput base.', 'gp2 → gp3', 180]
+        ]}
+    };
+  }
+
+  mapRows(rs) {
+    return rs.rows.map(r => { const st = this.utilState(r[5], rs.kind, r[11]); const hm = this.historyModal(r[0], r[5], rs.metricLabel, r[6], r[2], r[7], r[10], r[11], rs.kind); const hasAct = r[11] > 0; return {
+        id: r[0], name: r[1], type: r[2], place: r[3],
+        metric: r[4], metricWidth: Math.min(r[5], 100) + '%',
+        metricColor: st.fg,
+        cost: this.money(r[6]), delta: r[7],
+        deltaColor: r[7].indexOf('+') === 0 ? '#d9b47f' : r[7] === '—' ? 'rgba(233,233,237,0.45)' : '#84d9b3',
+        state: st.label, stateBg: st.bg, stateFg: st.fg,
+        hint: r[10] === 'Sin acción' ? '' : r[10],
+        open: () => this.openModal(Object.assign({
+          kicker: rs.name + ' · recurso', title: r[0], sub: r[1] + ' · ' + r[2] + ' · ' + r[3],
+          stats: [
+            { label: 'Coste mensual', value: this.money(r[6]), color: '#e9e9ed' },
+            { label: rs.metricLabel + ' · 14 d', value: r[4], color: st.fg },
+            { label: 'Estado', value: st.label, color: st.fg }
+          ],
+          hasBody: true, body: r[9],
+          hasList: true, listTitle: hasAct ? 'Detalle y acción propuesta' : 'Detalle del recurso',
+          list: (hasAct ? [{ name: r[10], meta: 'recomendación ' + (rs.kind === 'compute' ? 'Compute Optimizer' : 'LedgerOps'), value: this.money(r[11]) + '/mes' }] : []).concat([
+            { name: hasAct ? 'Ventana de cambio' : 'Última revisión', meta: hasAct ? 'sábado 02:00–04:00 UTC' : 'hace 6 días · sin desperdicio detectado', value: hasAct ? 'sin downtime' : 'al día' },
+            { name: 'Owner', meta: 'tag Team · rollback automático', value: 'platform' }
+          ]),
+          hasJson: false, json: '', action: hasAct ? (rs.kind === 'compute' ? 'Aplicar rightsizing' : 'Aplicar acción') : 'Marcar como revisado'
+        }, hm))
+    }; });
+  }
+
+  renderVals() {
+    const s = this.state, W = 920, H = 220;
+    const res = this.resourceCatalog(), rs = res[s.resSvc];
+    const chargeShares = [0.46, 0.31, 0.12, 0.07, 0.04];
+    const chargeFills = ['#9184d9', '#796cbf', '#5d5294', '#b5abfc', '#595d6c'];
+    const chargeRects = [];
+    this.spend().forEach((v, i) => {
+      const bw = 920 / 12, bx = i * bw + bw * 0.24, bwid = bw * 0.52;
+      let acc = 0;
+      chargeShares.forEach((sh, j) => {
+        const h = (v * sh / 540) * 210, y = 210 - (acc / 540) * 210 - h;
+        acc += v * sh;
+        chargeRects.push({ x: bx.toFixed(1), y: y.toFixed(1), w: bwid.toFixed(1), h: Math.max(h, 1).toFixed(1), fill: chargeFills[j] });
+      });
+    });
+    const months = this.months(), spend = this.spend();
+    const min = 380, max = 530;
+    const px = i => (i / (spend.length - 1)) * W;
+    const py = v => H - ((v - min) / (max - min)) * H;
+    const line = spend.map((v, i) => (i ? 'L' : 'M') + px(i).toFixed(1) + ',' + py(v).toFixed(1)).join(' ');
+    const area = line + ' L' + W + ',' + H + ' L0,' + H + ' Z';
+
+    // ── breakdown ─────────────────────────────────────────────
+    const groups = { service: this.servicesData(), account: this.accountsData(), region: this.regionsData(), tag: this.tagsData() };
+    const rows = groups[s.group];
+    const topCost = rows[0][1];
+    const total = rows.reduce((a, r) => a + r[1], 0);
+    const groupLabel = { service: 'servicio', account: 'cuenta', region: 'región', tag: 'tag' }[s.group];
+
+    // ── cloudtrail ────────────────────────────────────────────
+    const q = s.query.trim().toLowerCase();
+    const evts = this.eventsData().filter(e => {
+      if (q && (e[1] + ' ' + e[3] + ' ' + e[4] + ' ' + e[6] + ' ' + e[5]).toLowerCase().indexOf(q) < 0) return false;
+      if (s.fWrites && !e[8]) return false;
+      if (s.fErrors && e[7] === 'Success') return false;
+      if (s.fCost && !e[9]) return false;
+      return true;
+    });
+    const chip = on => ({ border: on ? '#9184d9' : 'rgba(233,233,237,0.16)', fg: on ? '#d2cefd' : 'rgba(233,233,237,0.8)', bg: on ? 'rgba(145,132,217,0.16)' : 'transparent' });
+
+    // ── trusted advisor ───────────────────────────────────────
+    const cat = this.taCatalog();
+    const sevColor = { error: '#d98a8a', warn: '#d9b47f', ok: '#84d9b3' };
+
+    // ── stacked chart ─────────────────────────────────────────
+    const stackKeys = [['EC2', '#9184d9'], ['S3', '#796cbf'], ['RDS', '#5d5294'], ['EKS', '#b5abfc'], ['Otros', '#595d6c']];
+    const shares = [0.385, 0.128, 0.113, 0.086, 0.288];
+    const SH = 240, sMax = 540;
+    const rects = [];
+    spend.forEach((v, i) => {
+      const bw = W / spend.length, bx = i * bw + bw * 0.22, w = bw * 0.56;
+      let acc = 0;
+      stackKeys.forEach((k, j) => {
+        const part = v * shares[j];
+        const h = (part / sMax) * SH;
+        const y = SH - (acc / sMax) * SH - h;
+        acc += part;
+        rects.push({ x: bx.toFixed(1), y: y.toFixed(1), w: w.toFixed(1), h: Math.max(h, 1).toFixed(1), fill: k[1] });
+      });
+    });
+
+    return {
+      nav: { dashboard: this.navFor('dashboard'), cost: this.navFor('cost'), trail: this.navFor('trail'), advisor: this.navFor('advisor'), optimize: this.navFor('optimize'), alerts: this.navFor('alerts') },
+      goDashboard: () => this.setState({ screen: 'dashboard' }),
+      goCost: () => this.setState({ screen: 'cost' }),
+      goTrail: () => this.setState({ screen: 'trail' }),
+      goAdvisor: () => this.setState({ screen: 'advisor' }),
+      goOptimize: () => this.setState({ screen: 'optimize' }),
+      goResources: () => this.setState({ screen: 'resources' }),
+      goAlerts: () => this.setState({ screen: 'alerts' }),
+      isDashboard: s.screen === 'dashboard', isCost: s.screen === 'cost', isTrail: s.screen === 'trail',
+      isAdvisor: s.screen === 'advisor', isOptimize: s.screen === 'optimize', isAlerts: s.screen === 'alerts',
+      isResources: s.screen === 'resources',
+      resTabs: Object.keys(res).map(k => ({
+        name: res[k].name, count: res[k].count,
+        border: s.resSvc === k ? '#9184d9' : 'rgba(233,233,237,0.16)',
+        bg: s.resSvc === k ? 'rgba(145,132,217,0.16)' : 'transparent',
+        fg: s.resSvc === k ? '#d2cefd' : 'rgba(233,233,237,0.8)',
+        select: () => this.setState({ resSvc: k })
+      })),
+      resTitle: 'Top consumidores · ' + rs.name,
+      resTypeLabel: rs.typeLabel, resMetricLabel: rs.metricLabel,
+      resSummary: rs.summary,
+      resources: this.mapRows(rs),
+      dashTop: this.mapRows(res[s.cudosPillar]).slice(0, 6),
+      pageTitle: this.pageMeta()[0], pageSub: this.pageMeta()[1],
+      months: months,
+
+      kpis: [
+        { label: 'Coste amortizado', value: '$487,320', sub: 'MTD · agosto 2026', color: '#e9e9ed' },
+        { label: 'MoM', value: '+4.2%', sub: '+$19,640 vs. julio', color: '#d9b47f' },
+        { label: 'Forecast', value: '$512,400', sub: '102% del budget', color: '#d9b47f' },
+        { label: 'Ahorro realizado', value: '$78,900', sub: 'SP + RI + Spot', color: '#84d9b3' },
+        { label: 'Ahorro pendiente', value: '$63,480', sub: '18 recomendaciones', color: '#84d9b3' },
+        { label: 'Gasto sin tag', value: '4.6%', sub: '$22,200 sin owner', color: '#d9b47f' },
+        { label: 'Anomalías', value: '3', sub: '2 críticas · $9,140/día', color: '#d98a8a' }
+      ],
+      chargeLegend: [
+        { name: 'On-Demand', fill: '#9184d9' }, { name: 'Savings Plans', fill: '#796cbf' },
+        { name: 'Reserved', fill: '#5d5294' }, { name: 'Spot', fill: '#b5abfc' }, { name: 'Otros', fill: '#595d6c' }
+      ],
+      chargeGrid: [42, 84, 126, 168].map(y => ({ y: y })),
+      chargeRects: chargeRects,
+      trendLine210: spend.map((v, i) => (i ? 'L' : 'M') + ((i / 11) * W).toFixed(1) + ',' + (210 - (v / 540) * 210).toFixed(1)).join(' '),
+      movers: [
+        { name: 'Amazon EKS · data-platform', delta: '+$5,840', color: '#d9b47f', posWidth: '100%', negWidth: '0%' },
+        { name: 'NAT Gateway · prod-core', delta: '+$3,300', color: '#d9b47f', posWidth: '57%', negWidth: '0%' },
+        { name: 'Amazon EC2 · prod-core', delta: '+$2,910', color: '#d9b47f', posWidth: '50%', negWidth: '0%' },
+        { name: 'Amazon S3 · data-platform', delta: '+$1,480', color: '#d9b47f', posWidth: '25%', negWidth: '0%' },
+        { name: 'CloudFront · prod-eu', delta: '-$920', color: '#84d9b3', posWidth: '0%', negWidth: '16%' },
+        { name: 'Amazon EC2 · staging', delta: '-$2,140', color: '#84d9b3', posWidth: '0%', negWidth: '37%' },
+        { name: 'Savings Plans aplicados', delta: '-$4,610', color: '#84d9b3', posWidth: '0%', negWidth: '79%' }
+      ],
+      covTiles: [
+        { name: 'Cobertura Compute SP', pct: '61%', color: '#d9b47f', note: 'objetivo 85% · $16.9k/mes en juego' },
+        { name: 'Utilización SP', pct: '96%', color: '#84d9b3', note: 'sin desperdicio de compromiso' },
+        { name: 'Utilización RI', pct: '88%', color: '#84d9b3', note: '4 RDS RI vencen en 41 días' },
+        { name: 'Gasto en Spot', pct: '12%', color: '#d9b47f', note: 'objetivo 25% en cargas batch' }
+      ],
+      pillars: Object.keys(res).map(k => ({
+        name: res[k].name,
+        border: s.cudosPillar === k ? '#9184d9' : 'rgba(233,233,237,0.16)',
+        bg: s.cudosPillar === k ? 'rgba(145,132,217,0.16)' : 'transparent',
+        fg: s.cudosPillar === k ? '#d2cefd' : 'rgba(233,233,237,0.8)',
+        select: () => this.setState({ cudosPillar: k })
+      })),
+      pillarTitle: res[s.cudosPillar].name,
+      tagRows: [
+        { name: 'Team', pct: '95%', amount: '$465.1k', color: '#84d9b3' },
+        { name: 'Environment', pct: '88%', amount: '$428.8k', color: '#84d9b3' },
+        { name: 'CostCenter', pct: '71%', amount: '$346.0k', color: '#d9b47f' },
+        { name: 'Project', pct: '54%', amount: '$263.2k', color: '#d98a8a' }
+      ],
+      unitRows: [
+        { name: 'Coste por transacción', basis: '41.2 M transacciones', value: '$0.0118', delta: '-2.4% MoM', color: '#84d9b3' },
+        { name: 'Coste por cuenta activa', basis: '186 k cuentas', value: '$2.62', delta: '+1.1% MoM', color: '#d9b47f' },
+        { name: 'Coste por TB procesado', basis: '312 TB en pipelines', value: '$134.20', delta: '+9.8% MoM', color: '#d9b47f' },
+        { name: 'Coste por despliegue', basis: '1,480 despliegues', value: '$18.40', delta: '-6.2% MoM', color: '#84d9b3' }
+      ],
+      healthRows: [
+        { name: 'Trusted Advisor · acciones requeridas', value: '10', color: '#d98a8a' },
+        { name: 'Trusted Advisor · a investigar', value: '44', color: '#d9b47f' },
+        { name: 'Recursos infrautilizados', value: '184', color: '#d9b47f' },
+        { name: 'Eventos CloudTrail con impacto en coste', value: '26 / 24 h', color: '#b5abfc' },
+        { name: 'Budgets excedidos', value: '1 de 4', color: '#d98a8a' }
+      ],
+
+      trendLine: line, trendArea: area, budgetY: py(500).toFixed(1),
+      trendGrid: [420, 450, 480, 510].map(v => ({ y: py(v).toFixed(1) })),
+      trendPts: spend.map((v, i) => ({ x: px(i).toFixed(1), y: py(v).toFixed(1), r: i === spend.length - 1 ? 4.5 : 0 })),
+
+      services: this.servicesData().map(r => ({
+        name: r[0], label: this.money(r[1] / 1000) + 'k', delta: r[2],
+        deltaColor: r[3] === 'up' ? '#d9b47f' : '#84d9b3',
+        width: Math.round((r[1] / 187400) * 100) + '%',
+        fill: r[3] === 'up' ? '#9184d9' : '#796cbf'
+      })),
+
+      taSummary: Object.keys(cat).map(k => ({ name: cat[k].name, error: cat[k].error, warn: cat[k].warn, ok: cat[k].ok })),
+
+      alertsBrief: this.anomaliesData().map(a => ({ title: a[0], meta: a[2] + ' · ' + a[4], color: a[5] })),
+      eventsBrief: this.eventsData().slice(0, 5).map(e => ({ time: e[0], name: e[1], actor: e[3].replace('role/', '').replace('user/', ''), color: this.resultColor(e[7]) })),
+
+      grpService: s.group === 'service', grpAccount: s.group === 'account', grpRegion: s.group === 'region', grpTag: s.group === 'tag',
+      setGroupService: () => this.setState({ group: 'service' }),
+      setGroupAccount: () => this.setState({ group: 'account' }),
+      setGroupRegion: () => this.setState({ group: 'region' }),
+      setGroupTag: () => this.setState({ group: 'tag' }),
+      groupLabel: groupLabel,
+      stackLegend: stackKeys.map(k => ({ name: k[0], fill: k[1] })),
+      stackGrid: [60, 120, 180, 240].map(y => ({ y: y })),
+      stackRects: rects,
+      breakdown: rows.map((r, i) => ({
+        name: r[0], cost: this.money(r[1]), delta: (r[3] === 'up' ? '+' : '') + r[2].replace('+', ''),
+        deltaColor: r[3] === 'up' ? '#d9b47f' : '#84d9b3',
+        width: Math.round((r[1] / topCost) * 100) + '%',
+        share: Math.round((r[1] / total) * 100) + '%',
+        forecast: this.money(r[1] * 1.052),
+        coverage: [72, 61, 68, 44, 55, 12, 39][i % 7] + '%',
+        covColor: [72, 61, 68, 44, 55, 12, 39][i % 7] < 55 ? '#d9b47f' : '#84d9b3',
+        open: () => this.openModal({
+          kicker: 'Cost Explorer · ' + groupLabel, title: r[0], sub: 'Gasto MTD ' + this.money(r[1]) + ' · ' + Math.round((r[1] / total) * 100) + '% del total',
+          stats: [
+            { label: 'Δ mes anterior', value: r[2], color: r[3] === 'up' ? '#d9b47f' : '#84d9b3' },
+            { label: 'Forecast fin de mes', value: this.money(r[1] * 1.052), color: '#e9e9ed' },
+            { label: 'Ahorro identificado', value: this.money(r[1] * 0.13), color: '#84d9b3' }
+          ],
+          hasBody: true,
+          body: 'El desglose se calcula sobre coste amortizado, con los créditos y los Savings Plans repartidos entre las cuentas de la organización. La variación se compara con el mismo número de días del mes anterior para evitar falsos picos.',
+          hasList: true, listTitle: 'Principales contribuyentes',
+          list: [
+            { name: 'i-0a3f19c74b2e8d551', meta: 'm6i.4xlarge · us-east-1', value: this.money(r[1] * 0.18) },
+            { name: 'i-04c81ba9de7712f30', meta: 'm5.2xlarge · us-east-1', value: this.money(r[1] * 0.12) },
+            { name: 'eks/data-ingest-prod', meta: 'node group · eu-west-1', value: this.money(r[1] * 0.09) },
+            { name: 'rds/payments-primary', meta: 'db.r6g.4xlarge · us-east-1', value: this.money(r[1] * 0.07) }
+          ],
+          hasJson: false, json: '', action: 'Crear informe'
+        })
+      })),
+
+      query: s.query,
+      setQuery: e => this.setState({ query: e.target.value }),
+      f: { writes: chip(s.fWrites), errors: chip(s.fErrors), cost: chip(s.fCost) },
+      toggleWrites: () => this.setState({ fWrites: !s.fWrites }),
+      toggleErrors: () => this.setState({ fErrors: !s.fErrors }),
+      toggleCost: () => this.setState({ fCost: !s.fCost }),
+      eventCount: evts.length,
+      events: evts.map(e => ({
+        time: e[0], name: e[1], source: e[2].replace('.amazonaws.com', ''), actor: e[3], account: e[4],
+        region: e[5], ip: e[6], result: e[7], color: this.resultColor(e[7]),
+        badgeBg: e[7] === 'Success' ? 'rgba(132,217,179,0.14)' : e[7] === 'AccessDenied' ? 'rgba(217,180,127,0.16)' : 'rgba(217,138,138,0.16)',
+        open: () => this.openModal(this.eventModal(e))
+      })),
+
+      taCards: Object.keys(cat).map(k => ({
+        name: cat[k].name, total: cat[k].error + cat[k].warn,
+        detail: cat[k].error + ' error · ' + cat[k].warn + ' warn · ' + cat[k].ok + ' ok',
+        dot: cat[k].error ? '#d98a8a' : cat[k].warn ? '#d9b47f' : '#84d9b3',
+        bg: s.taCat === k ? '#2b2741' : '#232532',
+        ring: s.taCat === k ? 'rgba(145,132,217,0.5)' : 'rgba(233,233,237,0.07)',
+        select: () => this.setState({ taCat: k })
+      })),
+      taTitle: cat[s.taCat].name,
+      taChecks: cat[s.taCat].checks.map(c => ({
+        color: sevColor[c[0]], name: c[1], desc: c[2], accounts: c[3], resources: c[4], saving: c[5],
+        open: () => this.openModal({
+          kicker: 'Trusted Advisor · ' + cat[s.taCat].name, title: c[1], sub: c[2] + ' · ' + c[3],
+          stats: [
+            { label: 'Severidad', value: c[0] === 'error' ? 'Acción requerida' : c[0] === 'warn' ? 'Investigar' : 'Correcto', color: sevColor[c[0]] },
+            { label: 'Recursos afectados', value: c[4], color: '#e9e9ed' },
+            { label: 'Ahorro estimado', value: c[5], color: '#84d9b3' }
+          ],
+          hasBody: true,
+          body: 'Trusted Advisor evalúa este check en las 14 cuentas de la organización cada 24 h. Los recursos listados se han detectado en la última evaluación; aplicar la corrección desde aquí abre un change request en el backlog del equipo propietario según el tag Team.',
+          hasList: true, listTitle: 'Recursos detectados',
+          list: [
+            { name: 'i-0a3f19c74b2e8d551', meta: 'prod-core · us-east-1', value: '$1,940/mes' },
+            { name: 'i-07bb2f5c1099ae431', meta: 'prod-core · us-west-2', value: '$1,420/mes' },
+            { name: 'i-0dd41c8827fa3b019', meta: 'data-platform · eu-west-1', value: '$1,180/mes' },
+            { name: 'i-0f92ab3e5510cc784', meta: 'staging · us-east-1', value: '$860/mes' }
+          ],
+          hasJson: false, json: '', action: 'Crear change request'
+        })
+      })),
+
+      savingSources: [
+        { name: 'Compute Optimizer', amount: '$22,160', width: '100%' },
+        { name: 'Savings Plans', amount: '$16,900', width: '76%' },
+        { name: 'Recursos ociosos', amount: '$16,940', width: '76%' },
+        { name: 'Almacenamiento', amount: '$7,480', width: '34%' }
+      ],
+      coverage: [
+        { name: 'Compute SP', pct: '61%', target: '85%', color: '#d9b47f' },
+        { name: 'RDS RI', pct: '78%', target: '75%', color: '#84d9b3' },
+        { name: 'ElastiCache RI', pct: '44%', target: '70%', color: '#d98a8a' }
+      ],
+      recs: this.recsData().map(r => ({
+        source: r[0], title: r[1], desc: r[2], saving: r[3], effort: 'Esfuerzo ' + r[4].toLowerCase(), account: r[5],
+        effortBg: r[4] === 'Bajo' ? 'rgba(132,217,179,0.14)' : 'rgba(217,180,127,0.16)',
+        effortFg: r[4] === 'Bajo' ? '#84d9b3' : '#d9b47f',
+        open: () => this.openModal({
+          kicker: 'Optimización · ' + r[0], title: r[1], sub: r[5] + ' · recomendación abierta hace 3 días',
+          stats: [
+            { label: 'Ahorro mensual', value: r[3], color: '#84d9b3' },
+            { label: 'Esfuerzo', value: r[4], color: r[4] === 'Bajo' ? '#84d9b3' : '#d9b47f' },
+            { label: 'Riesgo', value: r[4] === 'Bajo' ? 'Bajo' : 'Medio · requiere ventana', color: '#e9e9ed' }
+          ],
+          hasBody: true, body: r[2] + ' El plan propuesto se ejecuta por lotes del 20% de los recursos, con 48 h de observación de métricas de CloudWatch entre lotes y rollback automático si p95 de latencia sube más del 10%.',
+          hasList: true, listTitle: 'Recursos incluidos',
+          list: [
+            { name: 'i-0a3f19c74b2e8d551', meta: 'm5.4xlarge → m6g.4xlarge', value: '$620/mes' },
+            { name: 'i-07bb2f5c1099ae431', meta: 'm5.2xlarge → m6g.2xlarge', value: '$410/mes' },
+            { name: 'i-0dd41c8827fa3b019', meta: 'm5.xlarge → m6g.xlarge', value: '$205/mes' }
+          ],
+          hasJson: false, json: '', action: 'Aplicar recomendación'
+        })
+      })),
+
+      anomalies: this.anomaliesData().map(a => ({
+        title: a[0], severity: a[1], meta: a[2], cause: a[3], impact: a[4], color: a[5],
+        ring: a[1] === 'Crítica' ? 'rgba(217,138,138,0.35)' : 'rgba(233,233,237,0.07)',
+        iconBg: a[1] === 'Crítica' ? 'rgba(217,138,138,0.14)' : 'rgba(217,180,127,0.14)',
+        spark: this.sparkPath(a[6]),
+        open: () => this.openModal({
+          kicker: 'Cost Anomaly Detection', title: a[0], sub: a[2],
+          stats: [
+            { label: 'Severidad', value: a[1], color: a[5] },
+            { label: 'Impacto', value: a[4], color: a[5] },
+            { label: 'Evidencia CloudTrail', value: '4 eventos', color: '#b5abfc' }
+          ],
+          hasBody: true, body: 'Causa probable: ' + a[3] + '. La detección compara el gasto diario con la banda esperada de los últimos 60 días por servicio, cuenta y región. Evidencia correlacionada: ' + a[7] + '.',
+          hasList: true, listTitle: 'Acciones sugeridas',
+          list: [
+            { name: 'Reducir node group a 12 nodos', meta: 'reversible · owner platform', value: '$4,200/día' },
+            { name: 'Añadir VPC endpoint para S3', meta: 'cambio de red · 1 sprint', value: '$3,100/día' },
+            { name: 'Scheduler de apagado 20:00–07:00', meta: 'automatizable', value: '$780/día' }
+          ],
+          hasJson: false, json: '', action: 'Asignar al equipo'
+        })
+      })),
+      budgets: [
+        { name: 'Organización · mensual', spent: '$487.3k', limit: '$500k', width: '97%', color: '#d9b47f', note: '97% consumido · forecast 102%' },
+        { name: 'prod-core', spent: '$214.8k', limit: '$240k', width: '89%', color: '#d9b47f', note: '89% consumido' },
+        { name: 'data-platform', spent: '$96.4k', limit: '$85k', width: '100%', color: '#d98a8a', note: 'Excedido en $11.4k' },
+        { name: 'sandbox', spent: '$18.9k', limit: '$40k', width: '47%', color: '#84d9b3', note: '47% consumido' }
+      ],
+
+      agentOpen: s.agentOpen,
+      openAgent: () => this.setState({ agentOpen: true }),
+      closeAgent: () => this.setState({ agentOpen: false }),
+      agentPrompts: [
+        '¿Por qué subió el gasto de EKS en data-platform esta semana?',
+        'Dame las 5 acciones con mayor ahorro y menor riesgo para este trimestre',
+        '¿Qué cambios de CloudTrail explican el pico del martes en us-east-1?',
+        'Simula el impacto de un Compute Savings Plan de 1 año al 85% de cobertura'
+      ],
+
+      modalOpen: !!s.modal,
+      modal: s.modal || { kicker: '', title: '', sub: '', stats: [], hasBody: false, body: '', hasList: false, listTitle: '', list: [], hasJson: false, json: '', action: '', hasChart: false, chartTitle: '', chartPath: '', chartArea: '', y60: 60, y20: 120, chartStats: [], chartLabels: [], verdict: '', verdictBody: '', verdictColor: '', verdictBg: '' },
+      closeModal: () => this.setState({ modal: null }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>
